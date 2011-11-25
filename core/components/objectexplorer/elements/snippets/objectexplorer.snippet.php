@@ -153,7 +153,6 @@ if (! $model) {
             }
         }
     }
-
 } else {
     /* Do Full Reference */
     $jumpList = array();
