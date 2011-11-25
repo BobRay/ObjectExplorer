@@ -1,0 +1,1295 @@
+<a name="top"></a>
+<h2>MODX Objects</h2><div  class="jumplist" width="60%">
+<table align="center" border="0" cellpadding="2" cellspacing="5">
+<tr><td><a href="[[~[[*id]]]]#modAccess">modAccess</a></td><td><a href="[[~[[*id]]]]#modAccessibleObject">modAccessibleObject</a></td><td><a href="[[~[[*id]]]]#modDocument">modDocument</a></td><td><a href="[[~[[*id]]]]#modPrincipal">modPrincipal</a></td><td><a href="[[~[[*id]]]]#modTemplateVarResourceGroup">modTemplateVarResourceGroup</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessAction">modAccessAction</a></td><td><a href="[[~[[*id]]]]#modAccessibleSimpleObject">modAccessibleSimpleObject</a></td><td><a href="[[~[[*id]]]]#modElement">modElement</a></td><td><a href="[[~[[*id]]]]#modPropertySet">modPropertySet</a></td><td><a href="[[~[[*id]]]]#modTemplateVarTemplate">modTemplateVarTemplate</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessActionDom">modAccessActionDom</a></td><td><a href="[[~[[*id]]]]#modAction">modAction</a></td><td><a href="[[~[[*id]]]]#modElementPropertySet">modElementPropertySet</a></td><td><a href="[[~[[*id]]]]#modResource">modResource</a></td><td><a href="[[~[[*id]]]]#modUser">modUser</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessCategory">modAccessCategory</a></td><td><a href="[[~[[*id]]]]#modActionDom">modActionDom</a></td><td><a href="[[~[[*id]]]]#modEvent">modEvent</a></td><td><a href="[[~[[*id]]]]#modResourceGroup">modResourceGroup</a></td><td><a href="[[~[[*id]]]]#modUserGroup">modUserGroup</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessContext">modAccessContext</a></td><td><a href="[[~[[*id]]]]#modActionField">modActionField</a></td><td><a href="[[~[[*id]]]]#modFormCustomizationProfile">modFormCustomizationProfile</a></td><td><a href="[[~[[*id]]]]#modResourceGroupResource">modResourceGroupResource</a></td><td><a href="[[~[[*id]]]]#modUserGroupMember">modUserGroupMember</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessElement">modAccessElement</a></td><td><a href="[[~[[*id]]]]#modActiveUser">modActiveUser</a></td><td><a href="[[~[[*id]]]]#modFormCustomizationProfileUserGroup">modFormCustomizationProfileUserGroup</a></td><td><a href="[[~[[*id]]]]#modScript">modScript</a></td><td><a href="[[~[[*id]]]]#modUserGroupRole">modUserGroupRole</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessMenu">modAccessMenu</a></td><td><a href="[[~[[*id]]]]#modCategory">modCategory</a></td><td><a href="[[~[[*id]]]]#modFormCustomizationSet">modFormCustomizationSet</a></td><td><a href="[[~[[*id]]]]#modSession">modSession</a></td><td><a href="[[~[[*id]]]]#modUserMessage">modUserMessage</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessPermission">modAccessPermission</a></td><td><a href="[[~[[*id]]]]#modCategoryClosure">modCategoryClosure</a></td><td><a href="[[~[[*id]]]]#modJSONRPCResource">modJSONRPCResource</a></td><td><a href="[[~[[*id]]]]#modSnippet">modSnippet</a></td><td><a href="[[~[[*id]]]]#modUserProfile">modUserProfile</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessPolicy">modAccessPolicy</a></td><td><a href="[[~[[*id]]]]#modChunk">modChunk</a></td><td><a href="[[~[[*id]]]]#modLexiconEntry">modLexiconEntry</a></td><td><a href="[[~[[*id]]]]#modStaticResource">modStaticResource</a></td><td><a href="[[~[[*id]]]]#modUserSetting">modUserSetting</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessPolicyTemplate">modAccessPolicyTemplate</a></td><td><a href="[[~[[*id]]]]#modClassMap">modClassMap</a></td><td><a href="[[~[[*id]]]]#modManagerLog">modManagerLog</a></td><td><a href="[[~[[*id]]]]#modSymLink">modSymLink</a></td><td><a href="[[~[[*id]]]]#modWebLink">modWebLink</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessPolicyTemplateGroup">modAccessPolicyTemplateGroup</a></td><td><a href="[[~[[*id]]]]#modContentType">modContentType</a></td><td><a href="[[~[[*id]]]]#modMenu">modMenu</a></td><td><a href="[[~[[*id]]]]#modSystemSetting">modSystemSetting</a></td><td><a href="[[~[[*id]]]]#modWorkspace">modWorkspace</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessResource">modAccessResource</a></td><td><a href="[[~[[*id]]]]#modContext">modContext</a></td><td><a href="[[~[[*id]]]]#modNamespace">modNamespace</a></td><td><a href="[[~[[*id]]]]#modTemplate">modTemplate</a></td><td><a href="[[~[[*id]]]]#modXMLRPCResource">modXMLRPCResource</a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessResourceGroup">modAccessResourceGroup</a></td><td><a href="[[~[[*id]]]]#modContextResource">modContextResource</a></td><td><a href="[[~[[*id]]]]#modPlugin">modPlugin</a></td><td><a href="[[~[[*id]]]]#modTemplateVar">modTemplateVar</a></td><td><a href="[[~[[*id]]]]#"></a></td></tr>
+<tr><td><a href="[[~[[*id]]]]#modAccessTemplateVar">modAccessTemplateVar</a></td><td><a href="[[~[[*id]]]]#modContextSetting">modContextSetting</a></td><td><a href="[[~[[*id]]]]#modPluginEvent">modPluginEvent</a></td><td><a href="[[~[[*id]]]]#modTemplateVarResource">modTemplateVarResource</a></td><td><a href="[[~[[*id]]]]#"></a></td></tr>
+</table>
+
+</div>
+
+<div class="reference"><pre>
+<a name="modAccess"></a>
+
+
+<h3>modAccess</h3>
+   Extends: xPDOObject
+   Fields:
+      target (string)
+      principal_class (string)
+      principal (integer)
+      authority (integer)
+      policy (integer)
+   Indexes:
+        target
+        principal_class
+        principal
+        authority
+        policy
+   Aliases:
+      Policy
+        -- use getOne('Policy') -- returns a modAccessPolicy object
+      Principal
+        -- use getOne('Principal') -- returns a modPrincipal object
+<a name="modAccessAction"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessAction</h3>
+   Extends: xPDOObject
+   Table: modx_access_actions
+
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modAction object
+<a name="modAccessActionDom"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessActionDom</h3>
+   Extends: xPDOObject
+   Table: modx_access_actiondom
+
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modActionDom object
+<a name="modAccessCategory"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessCategory</h3>
+   Extends: xPDOObject
+   Table: modx_access_category
+   Fields:
+      context_key (string)
+   Indexes:
+        context_key
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modCategory object
+      Context
+        -- use getOne('Context') -- returns a modContext object
+<a name="modAccessContext"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessContext</h3>
+   Extends: xPDOObject
+   Table: modx_access_context
+
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modContext object
+<a name="modAccessElement"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessElement</h3>
+   Extends: xPDOObject
+   Table: modx_access_elements
+   Fields:
+      context_key (string)
+   Indexes:
+        context_key
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modElement object
+      Context
+        -- use getOne('Context') -- returns a modContext object
+<a name="modAccessMenu"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessMenu</h3>
+   Extends: xPDOObject
+   Table: modx_access_menus
+
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modMenu object
+<a name="modAccessPermission"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessPermission</h3>
+   Extends: xPDOObject
+   Table: modx_access_permissions
+   Fields:
+      template (integer)
+      name (string)
+      description (string)
+      value (boolean)
+   Indexes:
+        template
+        name
+   Aliases:
+      Template
+        -- use getOne('Template') -- returns a modAccessPolicyTemplate object
+<a name="modAccessPolicy"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessPolicy</h3>
+   Extends: xPDOObject
+   Table: modx_access_policies
+   Fields:
+      name (string)
+      description (string)
+      parent (integer)
+      template (integer)
+      class (string)
+      data (json)
+      lexicon (string)
+   Indexes:
+        name
+        parent
+        class
+        template
+   Aliases:
+      Parent
+        -- use getOne('Parent') -- returns a modAccessPolicy object
+      Template
+        -- use getOne('Template') -- returns a modAccessPolicyTemplate object
+      Children
+        -- use getMany('Children') -- returns an array of modAccessPolicy objects
+<a name="modAccessPolicyTemplate"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessPolicyTemplate</h3>
+   Extends: xPDOObject
+   Table: modx_access_policy_templates
+   Fields:
+      template_group (integer)
+      name (string)
+      description (string)
+      lexicon (string)
+
+   Aliases:
+      TemplateGroup
+        -- use getOne('TemplateGroup') -- returns a modAccessPolicyTemplateGroup object
+      Permissions
+        -- use getMany('Permissions') -- returns an array of modAccessPermission objects
+      Policies
+        -- use getMany('Policies') -- returns an array of modAccessPolicy objects
+<a name="modAccessPolicyTemplateGroup"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessPolicyTemplateGroup</h3>
+   Extends: xPDOObject
+   Table: modx_access_policy_template_groups
+   Fields:
+      name (string)
+      description (string)
+
+   Aliases:
+      Templates
+        -- use getMany('Templates') -- returns an array of modAccessPolicyTemplate objects
+<a name="modAccessResource"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessResource</h3>
+   Extends: xPDOObject
+   Table: modx_access_resources
+   Fields:
+      context_key (string)
+   Indexes:
+        context_key
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modResource object
+      Context
+        -- use getOne('Context') -- returns a modContext object
+<a name="modAccessResourceGroup"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessResourceGroup</h3>
+   Extends: xPDOObject
+   Table: modx_access_resource_groups
+   Fields:
+      context_key (string)
+   Indexes:
+        context_key
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modResourceGroup object
+      Context
+        -- use getOne('Context') -- returns a modContext object
+<a name="modAccessTemplateVar"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessTemplateVar</h3>
+   Extends: xPDOObject
+   Table: modx_access_templatevars
+
+   Aliases:
+      Target
+        -- use getOne('Target') -- returns a modTemplateVar object
+<a name="modAccessibleObject"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessibleObject</h3>
+   Extends: xPDOObject
+<a name="modAccessibleSimpleObject"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAccessibleSimpleObject</h3>
+   Extends: xPDOObject
+   Fields:
+      id (integer)
+   Indexes:
+        PRIMARY<a name="modAction"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modAction</h3>
+   Extends: xPDOObject
+   Table: modx_actions
+   Fields:
+      namespace (string)
+      parent (integer)
+      controller (string)
+      haslayout (integer)
+      lang_topics (string)
+      assets (string)
+      help_url (string)
+   Indexes:
+        namespace
+        parent
+        controller
+   Aliases:
+      Namespace
+        -- use getOne('Namespace') -- returns a modNamespace object
+      Parent
+        -- use getOne('Parent') -- returns a modAction object
+      Children
+        -- use getMany('Children') -- returns an array of modAction objects
+      Menus
+        -- use getMany('Menus') -- returns an array of modMenu objects
+      Acls
+        -- use getMany('Acls') -- returns an array of modAccessAction objects
+      Fields
+        -- use getMany('Fields') -- returns an array of modActionField objects
+<a name="modActionDom"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modActionDom</h3>
+   Extends: xPDOObject
+   Table: modx_actiondom
+   Fields:
+      set (integer)
+      action (integer)
+      name (string)
+      description (string)
+      xtype (string)
+      container (string)
+      rule (string)
+      value (string)
+      constraint (string)
+      constraint_field (string)
+      constraint_class (string)
+      active (boolean)
+      for_parent (boolean)
+      rank (integer)
+   Indexes:
+        set, action
+        name, active
+        for_parent, rank
+   Aliases:
+      FCSet
+        -- use getOne('FCSet') -- returns a modFormCustomizationSet object
+      Action
+        -- use getOne('Action') -- returns a modAction object
+      Access
+        -- use getMany('Access') -- returns an array of modAccessActionDom objects
+<a name="modActionField"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modActionField</h3>
+   Extends: xPDOObject
+   Table: modx_actions_fields
+   Fields:
+      action (integer)
+      name (string)
+      type (string)
+      tab (string)
+      form (string)
+      other (string)
+      rank (integer)
+   Indexes:
+        action
+        type
+        tab
+   Aliases:
+      Action
+        -- use getOne('Action') -- returns a modAction object
+<a name="modActiveUser"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modActiveUser</h3>
+   Extends: xPDOObject
+   Table: modx_active_users
+   Fields:
+      internalKey (integer)
+      username (string)
+      lasthit (timestamp)
+      id (integer)
+      action (string)
+      ip (string)
+   Indexes:
+        internalKey
+   Aliases:
+      User
+        -- use getOne('User') -- returns a modUser object
+<a name="modCategory"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modCategory</h3>
+   Extends: xPDOObject
+   Table: modx_categories
+   Fields:
+      parent (integer)
+      category (string)
+   Indexes:
+        parent
+        category
+   Aliases:
+      Parent
+        -- use getOne('Parent') -- returns a modCategory object
+      Chunks
+        -- use getMany('Chunks') -- returns an array of modChunk objects
+      Snippets
+        -- use getMany('Snippets') -- returns an array of modSnippet objects
+      Plugins
+        -- use getMany('Plugins') -- returns an array of modPlugin objects
+      Templates
+        -- use getMany('Templates') -- returns an array of modTemplate objects
+      TemplateVars
+        -- use getMany('TemplateVars') -- returns an array of modTemplateVar objects
+      PropertySets
+        -- use getMany('PropertySets') -- returns an array of modPropertySet objects
+      Children
+        -- use getMany('Children') -- returns an array of modCategory objects
+      Acls
+        -- use getMany('Acls') -- returns an array of modAccessCategory objects
+      Ancestors
+        -- use getMany('Ancestors') -- returns an array of modCategoryClosure objects
+      Descendants
+        -- use getMany('Descendants') -- returns an array of modCategoryClosure objects
+<a name="modCategoryClosure"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modCategoryClosure</h3>
+   Extends: xPDOObject
+   Table: modx_categories_closure
+   Fields:
+      ancestor (integer)
+      descendant (integer)
+      depth (integer)
+   Indexes:
+        PRIMARY
+   Aliases:
+      Ancestor
+        -- use getOne('Ancestor') -- returns a modCategory object
+      Descendant
+        -- use getOne('Descendant') -- returns a modCategory object
+<a name="modChunk"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modChunk</h3>
+   Extends: xPDOObject
+   Table: modx_site_htmlsnippets
+   Fields:
+      name (string)
+      description (string)
+      editor_type (integer)
+      category (integer)
+      cache_type (integer)
+      snippet (string)
+      locked (boolean)
+      properties (array)
+   Indexes:
+        name
+        category
+        locked
+   Aliases:
+      Category
+        -- use getOne('Category') -- returns a modCategory object
+<a name="modClassMap"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modClassMap</h3>
+   Extends: xPDOObject
+   Table: modx_class_map
+   Fields:
+      class (string)
+      parent_class (string)
+      name_field (string)
+      path (string)
+      lexicon (string)
+   Indexes:
+        class
+        parent_class
+        name_field<a name="modContentType"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modContentType</h3>
+   Extends: xPDOObject
+   Table: modx_content_type
+   Fields:
+      name (string)
+      description (string)
+      mime_type (string)
+      file_extensions (string)
+      headers (array)
+      binary (boolean)
+   Indexes:
+        name
+   Aliases:
+      Resources
+        -- use getMany('Resources') -- returns an array of modResource objects
+<a name="modContext"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modContext</h3>
+   Extends: xPDOObject
+   Table: modx_context
+   Fields:
+      key (string)
+      description (string)
+   Indexes:
+        PRIMARY
+   Aliases:
+      ContextResources
+        -- use getMany('ContextResources') -- returns an array of modContextResource objects
+      ContextSettings
+        -- use getMany('ContextSettings') -- returns an array of modContextSetting objects
+      Acls
+        -- use getMany('Acls') -- returns an array of modAccessContext objects
+<a name="modContextResource"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modContextResource</h3>
+   Extends: xPDOObject
+   Table: modx_context_resource
+   Fields:
+      context_key (string)
+      resource (string)
+   Indexes:
+        PRIMARY
+   Aliases:
+      Context
+        -- use getOne('Context') -- returns a modContext object
+      Resource
+        -- use getOne('Resource') -- returns a modResource object
+<a name="modContextSetting"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modContextSetting</h3>
+   Extends: xPDOObject
+   Table: modx_context_setting
+   Fields:
+      context_key (string)
+      key (string)
+      value (string)
+      xtype (string)
+      namespace (string)
+      area (string)
+      editedon (timestamp)
+   Indexes:
+        PRIMARY
+   Aliases:
+      Context
+        -- use getOne('Context') -- returns a modContext object
+      SystemSetting
+        -- use getOne('SystemSetting') -- returns a modSystemSetting object
+<a name="modDocument"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modDocument</h3>
+   Extends: xPDOObject
+<a name="modElement"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modElement</h3>
+   Extends: xPDOObject
+   Table: modx_site_element
+
+   Aliases:
+      PropertySets
+        -- use getMany('PropertySets') -- returns an array of modElementPropertySet objects
+      CategoryAcls
+        -- use getMany('CategoryAcls') -- returns an array of modAccessCategory objects
+      Acls
+        -- use getMany('Acls') -- returns an array of modAccessElement objects
+<a name="modElementPropertySet"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modElementPropertySet</h3>
+   Extends: xPDOObject
+   Table: modx_element_property_sets
+   Fields:
+      element (integer)
+      element_class (string)
+      property_set (integer)
+   Indexes:
+        PRIMARY
+   Aliases:
+      Element
+        -- use getOne('Element') -- returns a modElement object
+      PropertySet
+        -- use getOne('PropertySet') -- returns a modPropertySet object
+<a name="modEvent"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modEvent</h3>
+   Extends: xPDOObject
+   Table: modx_system_eventnames
+   Fields:
+      name (string)
+      service (integer)
+      groupname (string)
+   Indexes:
+        PRIMARY
+   Aliases:
+      PluginEvents
+        -- use getMany('PluginEvents') -- returns an array of modPluginEvent objects
+<a name="modFormCustomizationProfile"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modFormCustomizationProfile</h3>
+   Extends: xPDOObject
+   Table: modx_fc_profiles
+   Fields:
+      name (string)
+      description (string)
+      active (integer)
+      rank (integer)
+   Indexes:
+        name
+        rank
+        active
+   Aliases:
+      Sets
+        -- use getMany('Sets') -- returns an array of modFormCustomizationSet objects
+      UserGroups
+        -- use getMany('UserGroups') -- returns an array of modFormCustomizationProfileUserGroup objects
+<a name="modFormCustomizationProfileUserGroup"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modFormCustomizationProfileUserGroup</h3>
+   Extends: xPDOObject
+   Table: modx_fc_profiles_usergroups
+   Fields:
+      usergroup (integer)
+      profile (integer)
+   Indexes:
+        PRIMARY
+   Aliases:
+      UserGroup
+        -- use getOne('UserGroup') -- returns a modUserGroup object
+      Profile
+        -- use getOne('Profile') -- returns a modFormCustomizationProfile object
+<a name="modFormCustomizationSet"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modFormCustomizationSet</h3>
+   Extends: xPDOObject
+   Table: modx_fc_sets
+   Fields:
+      profile (integer)
+      action (integer)
+      description (string)
+      active (integer)
+      template (integer)
+      constraint (string)
+      constraint_field (string)
+      constraint_class (string)
+   Indexes:
+        profile
+        action
+        active
+        template
+   Aliases:
+      Action
+        -- use getOne('Action') -- returns a modAction object
+      Template
+        -- use getOne('Template') -- returns a modTemplate object
+      Profile
+        -- use getOne('Profile') -- returns a modFormCustomizationProfile object
+      Rules
+        -- use getMany('Rules') -- returns an array of modActionDom objects
+<a name="modJSONRPCResource"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modJSONRPCResource</h3>
+   Extends: xPDOObject
+<a name="modLexiconEntry"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modLexiconEntry</h3>
+   Extends: xPDOObject
+   Table: modx_lexicon_entries
+   Fields:
+      name (string)
+      value (string)
+      topic (string)
+      namespace (string)
+      language (string)
+      createdon (datetime)
+      editedon (timestamp)
+   Indexes:
+        name
+        topic
+        namespace
+        language
+   Aliases:
+      Namespace
+        -- use getOne('Namespace') -- returns a modNamespace object
+<a name="modManagerLog"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modManagerLog</h3>
+   Extends: xPDOObject
+   Table: modx_manager_log
+   Fields:
+      user (integer)
+      occurred (datetime)
+      action (string)
+      classKey (string)
+      item (string)
+
+   Aliases:
+      User
+        -- use getOne('User') -- returns a modUser object
+<a name="modMenu"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modMenu</h3>
+   Extends: xPDOObject
+   Table: modx_menus
+   Fields:
+      text (string)
+      parent (string)
+      action (integer)
+      description (string)
+      icon (string)
+      menuindex (integer)
+      params (string)
+      handler (string)
+      permissions (string)
+   Indexes:
+        PRIMARY
+        parent
+        action
+   Aliases:
+      Action
+        -- use getOne('Action') -- returns a modAction object
+      Parent
+        -- use getOne('Parent') -- returns a modMenu object
+      Children
+        -- use getMany('Children') -- returns an array of modMenu objects
+      Acls
+        -- use getMany('Acls') -- returns an array of modAccessMenu objects
+<a name="modNamespace"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modNamespace</h3>
+   Extends: xPDOObject
+   Table: modx_namespaces
+   Fields:
+      name (string)
+      path (string)
+   Indexes:
+        PRIMARY
+   Aliases:
+      LexiconEntries
+        -- use getMany('LexiconEntries') -- returns an array of modLexiconEntry objects
+      SystemSettings
+        -- use getMany('SystemSettings') -- returns an array of modSystemSetting objects
+      ContextSettings
+        -- use getMany('ContextSettings') -- returns an array of modContextSetting objects
+      UserSettings
+        -- use getMany('UserSettings') -- returns an array of modUserSetting objects
+      Actions
+        -- use getMany('Actions') -- returns an array of modAction objects
+<a name="modPlugin"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modPlugin</h3>
+   Extends: xPDOObject
+   Table: modx_site_plugins
+   Fields:
+      cache_type (integer)
+      plugincode (string)
+      locked (boolean)
+      properties (array)
+      disabled (boolean)
+      moduleguid (string)
+   Indexes:
+        locked
+        disabled
+   Aliases:
+      PluginEvents
+        -- use getMany('PluginEvents') -- returns an array of modPluginEvent objects
+<a name="modPluginEvent"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modPluginEvent</h3>
+   Extends: xPDOObject
+   Table: modx_site_plugin_events
+   Fields:
+      pluginid (integer)
+      event (string)
+      priority (integer)
+      propertyset (integer)
+   Indexes:
+        PRIMARY
+        priority
+   Aliases:
+      Plugin
+        -- use getOne('Plugin') -- returns a modPlugin object
+      Event
+        -- use getOne('Event') -- returns a modEvent object
+      PropertySet
+        -- use getOne('PropertySet') -- returns a modPropertySet object
+<a name="modPrincipal"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modPrincipal</h3>
+   Extends: xPDOObject
+
+   Aliases:
+      Acls
+        -- use getMany('Acls') -- returns an array of modAccess objects
+<a name="modPropertySet"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modPropertySet</h3>
+   Extends: xPDOObject
+   Table: modx_property_set
+   Fields:
+      name (string)
+      category (integer)
+      description (string)
+      properties (array)
+   Indexes:
+        name
+        category
+   Aliases:
+      Category
+        -- use getOne('Category') -- returns a modCategory object
+      Elements
+        -- use getMany('Elements') -- returns an array of modElementPropertySet objects
+<a name="modResource"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modResource</h3>
+   Extends: xPDOObject
+   Table: modx_site_content
+   Fields:
+      type (string)
+      contentType (string)
+      pagetitle (string)
+      longtitle (string)
+      description (string)
+      alias (string)
+      link_attributes (string)
+      published (boolean)
+      pub_date (timestamp)
+      unpub_date (timestamp)
+      parent (integer)
+      isfolder (boolean)
+      introtext (string)
+      content (string)
+      richtext (boolean)
+      template (integer)
+      menuindex (integer)
+      searchable (boolean)
+      cacheable (boolean)
+      createdby (integer)
+      createdon (timestamp)
+      editedby (integer)
+      editedon (timestamp)
+      deleted (boolean)
+      deletedon (timestamp)
+      deletedby (integer)
+      publishedon (timestamp)
+      publishedby (integer)
+      menutitle (string)
+      donthit (boolean)
+      privateweb (boolean)
+      privatemgr (boolean)
+      content_dispo (integer)
+      hidemenu (boolean)
+      class_key (string)
+      context_key (string)
+      content_type (integer)
+      uri (string)
+      uri_override (integer)
+   Indexes:
+        alias, published, pub_date, unpub_date
+        parent, isfolder, template, menuindex
+        searchable, cacheable, hidemenu, class_key
+        context_key, uri, uri_override, content_ft_idx
+   Aliases:
+      Parent
+        -- use getOne('Parent') -- returns a modResource object
+      Children
+        -- use getMany('Children') -- returns an array of modResource objects
+      CreatedBy
+        -- use getOne('CreatedBy') -- returns a modUser object
+      EditedBy
+        -- use getOne('EditedBy') -- returns a modUser object
+      DeletedBy
+        -- use getOne('DeletedBy') -- returns a modUser object
+      PublishedBy
+        -- use getOne('PublishedBy') -- returns a modUser object
+      Template
+        -- use getOne('Template') -- returns a modTemplate object
+      TemplateVars
+        -- use getMany('TemplateVars') -- returns an array of modTemplateVar objects
+      TemplateVarTemplates
+        -- use getMany('TemplateVarTemplates') -- returns an array of modTemplateVarTemplate objects
+      ContentType
+        -- use getOne('ContentType') -- returns a modContentType object
+      Context
+        -- use getOne('Context') -- returns a modContext object
+      TemplateVarResources
+        -- use getMany('TemplateVarResources') -- returns an array of modTemplateVarResource objects
+      ResourceGroupResources
+        -- use getMany('ResourceGroupResources') -- returns an array of modResourceGroupResource objects
+      Acls
+        -- use getMany('Acls') -- returns an array of modAccessResource objects
+      ContextResources
+        -- use getMany('ContextResources') -- returns an array of modContextResource objects
+<a name="modResourceGroup"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modResourceGroup</h3>
+   Extends: xPDOObject
+   Table: modx_documentgroup_names
+   Fields:
+      name (string)
+      private_memgroup (boolean)
+      private_webgroup (boolean)
+   Indexes:
+        name
+   Aliases:
+      ResourceGroupResources
+        -- use getMany('ResourceGroupResources') -- returns an array of modResourceGroupResource objects
+      Acls
+        -- use getMany('Acls') -- returns an array of modAccessResourceGroup objects
+<a name="modResourceGroupResource"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modResourceGroupResource</h3>
+   Extends: xPDOObject
+   Table: modx_document_groups
+   Fields:
+      document_group (integer)
+      document (integer)
+   Indexes:
+        document_group
+        document
+   Aliases:
+      ResourceGroup
+        -- use getOne('ResourceGroup') -- returns a modResourceGroup object
+      Resource
+        -- use getOne('Resource') -- returns a modResource object
+<a name="modScript"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modScript</h3>
+   Extends: xPDOObject
+   Table: modx_site_script
+   Fields:
+      name (string)
+      description (string)
+      editor_type (integer)
+      category (integer)
+   Indexes:
+        name
+        category
+   Aliases:
+      Category
+        -- use getOne('Category') -- returns a modCategory object
+<a name="modSession"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modSession</h3>
+   Extends: xPDOObject
+   Table: modx_session
+   Fields:
+      id (string)
+      access (timestamp)
+      data (string)
+   Indexes:
+        PRIMARY<a name="modSnippet"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modSnippet</h3>
+   Extends: xPDOObject
+   Table: modx_site_snippets
+   Fields:
+      cache_type (integer)
+      snippet (string)
+      locked (boolean)
+      properties (array)
+      moduleguid (string)
+   Indexes:
+        locked
+        moduleguid<a name="modStaticResource"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modStaticResource</h3>
+   Extends: xPDOObject
+<a name="modSymLink"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modSymLink</h3>
+   Extends: xPDOObject
+<a name="modSystemSetting"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modSystemSetting</h3>
+   Extends: xPDOObject
+   Table: modx_system_settings
+   Fields:
+      key (string)
+      value (string)
+      xtype (string)
+      namespace (string)
+      area (string)
+      editedon (timestamp)
+   Indexes:
+        PRIMARY
+   Aliases:
+      ContextSetting
+        -- use getOne('ContextSetting') -- returns a modContextSetting object
+      Namespace
+        -- use getOne('Namespace') -- returns a modNamespace object
+<a name="modTemplate"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modTemplate</h3>
+   Extends: xPDOObject
+   Table: modx_site_templates
+   Fields:
+      templatename (string)
+      description (string)
+      editor_type (integer)
+      category (integer)
+      icon (string)
+      template_type (integer)
+      content (string)
+      locked (boolean)
+      properties (array)
+   Indexes:
+        templatename
+        category
+        locked
+   Aliases:
+      Category
+        -- use getOne('Category') -- returns a modCategory object
+      Resources
+        -- use getMany('Resources') -- returns an array of modResource objects
+      TemplateVarTemplates
+        -- use getMany('TemplateVarTemplates') -- returns an array of modTemplateVarTemplate objects
+<a name="modTemplateVar"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modTemplateVar</h3>
+   Extends: xPDOObject
+   Table: modx_site_tmplvars
+   Fields:
+      type (string)
+      name (string)
+      caption (string)
+      description (string)
+      editor_type (integer)
+      category (integer)
+      locked (boolean)
+      elements (string)
+      rank (integer)
+      display (string)
+      default_text (string)
+      properties (array)
+      input_properties (array)
+      output_properties (array)
+   Indexes:
+        name
+        category
+        locked
+        rank
+   Aliases:
+      Category
+        -- use getOne('Category') -- returns a modCategory object
+      TemplateVarTemplates
+        -- use getMany('TemplateVarTemplates') -- returns an array of modTemplateVarTemplate objects
+      TemplateVarResources
+        -- use getMany('TemplateVarResources') -- returns an array of modTemplateVarResource objects
+      TemplateVarResourceGroups
+        -- use getMany('TemplateVarResourceGroups') -- returns an array of modTemplateVarResourceGroup objects
+<a name="modTemplateVarResource"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modTemplateVarResource</h3>
+   Extends: xPDOObject
+   Table: modx_site_tmplvar_contentvalues
+   Fields:
+      tmplvarid (integer)
+      contentid (integer)
+      value (string)
+   Indexes:
+        tmplvarid
+        contentid
+   Aliases:
+      TemplateVar
+        -- use getOne('TemplateVar') -- returns a modTemplateVar object
+      Resource
+        -- use getOne('Resource') -- returns a modResource object
+<a name="modTemplateVarResourceGroup"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modTemplateVarResourceGroup</h3>
+   Extends: xPDOObject
+   Table: modx_site_tmplvar_access
+   Fields:
+      tmplvarid (integer)
+      documentgroup (integer)
+
+   Aliases:
+      TemplateVar
+        -- use getOne('TemplateVar') -- returns a modTemplateVar object
+      ResourceGroup
+        -- use getOne('ResourceGroup') -- returns a modResourceGroup object
+<a name="modTemplateVarTemplate"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modTemplateVarTemplate</h3>
+   Extends: xPDOObject
+   Table: modx_site_tmplvar_templates
+   Fields:
+      tmplvarid (integer)
+      templateid (integer)
+      rank (integer)
+   Indexes:
+        PRIMARY
+   Aliases:
+      TemplateVar
+        -- use getOne('TemplateVar') -- returns a modTemplateVar object
+      Template
+        -- use getOne('Template') -- returns a modTemplate object
+<a name="modUser"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modUser</h3>
+   Extends: xPDOObject
+   Table: modx_users
+   Fields:
+      username (string)
+      password (string)
+      cachepwd (string)
+      class_key (string)
+      active (boolean)
+      remote_key (string)
+      remote_data (json)
+      hash_class (string)
+      salt (string)
+   Indexes:
+        username
+        class_key
+        remote_key
+   Aliases:
+      CreatedResources
+        -- use getMany('CreatedResources') -- returns an array of modResource objects
+      EditedResources
+        -- use getMany('EditedResources') -- returns an array of modResource objects
+      DeletedResources
+        -- use getMany('DeletedResources') -- returns an array of modResource objects
+      PublishedResources
+        -- use getMany('PublishedResources') -- returns an array of modResource objects
+      SentMessages
+        -- use getMany('SentMessages') -- returns an array of modUserMessage objects
+      ReceivedMessages
+        -- use getMany('ReceivedMessages') -- returns an array of modUserMessage objects
+      Profile
+        -- use getOne('Profile') -- returns a modUserProfile object
+      UserSettings
+        -- use getMany('UserSettings') -- returns an array of modUserSetting objects
+      UserGroupMembers
+        -- use getMany('UserGroupMembers') -- returns an array of modUserGroupMember objects
+<a name="modUserGroup"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modUserGroup</h3>
+   Extends: xPDOObject
+   Table: modx_membergroup_names
+   Fields:
+      name (string)
+      description (string)
+      parent (integer)
+      rank (integer)
+   Indexes:
+        name
+        parent
+        rank
+   Aliases:
+      Parent
+        -- use getOne('Parent') -- returns a modUserGroup object
+      Children
+        -- use getMany('Children') -- returns an array of modUserGroup objects
+      UserGroupMembers
+        -- use getMany('UserGroupMembers') -- returns an array of modUserGroupMember objects
+      FormCustomizationProfiles
+        -- use getMany('FormCustomizationProfiles') -- returns an array of modFormCustomizationProfileUserGroup objects
+<a name="modUserGroupMember"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modUserGroupMember</h3>
+   Extends: xPDOObject
+   Table: modx_member_groups
+   Fields:
+      user_group (integer)
+      member (integer)
+      role (integer)
+      rank (integer)
+   Indexes:
+        role
+        rank
+   Aliases:
+      UserGroupRole
+        -- use getOne('UserGroupRole') -- returns a modUserGroupRole object
+      UserGroup
+        -- use getOne('UserGroup') -- returns a modUserGroup object
+      User
+        -- use getOne('User') -- returns a modUser object
+<a name="modUserGroupRole"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modUserGroupRole</h3>
+   Extends: xPDOObject
+   Table: modx_user_group_roles
+   Fields:
+      name (string)
+      description (string)
+      authority (integer)
+   Indexes:
+        name
+        authority
+   Aliases:
+      UserGroupMembers
+        -- use getMany('UserGroupMembers') -- returns an array of modUserGroupMember objects
+<a name="modUserMessage"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modUserMessage</h3>
+   Extends: xPDOObject
+   Table: modx_user_messages
+   Fields:
+      type (string)
+      subject (string)
+      message (string)
+      sender (integer)
+      recipient (integer)
+      private (integer)
+      date_sent (datetime)
+      read (integer)
+
+   Aliases:
+      Sender
+        -- use getOne('Sender') -- returns a modUser object
+      Recipient
+        -- use getOne('Recipient') -- returns a modUser object
+<a name="modUserProfile"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modUserProfile</h3>
+   Extends: xPDOObject
+   Table: modx_user_attributes
+   Fields:
+      internalKey (integer)
+      fullname (string)
+      email (string)
+      phone (string)
+      mobilephone (string)
+      blocked (boolean)
+      blockeduntil (integer)
+      blockedafter (integer)
+      logincount (integer)
+      lastlogin (integer)
+      thislogin (integer)
+      failedlogincount (integer)
+      sessionid (string)
+      dob (integer)
+      gender (integer)
+      address (string)
+      country (string)
+      city (string)
+      state (string)
+      zip (string)
+      fax (string)
+      photo (string)
+      comment (string)
+      website (string)
+      extended (json)
+   Indexes:
+        internalKey
+   Aliases:
+      User
+        -- use getOne('User') -- returns a modUser object
+<a name="modUserSetting"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modUserSetting</h3>
+   Extends: xPDOObject
+   Table: modx_user_settings
+   Fields:
+      user (integer)
+      key (string)
+      value (string)
+      xtype (string)
+      namespace (string)
+      area (string)
+      editedon (timestamp)
+   Indexes:
+        PRIMARY
+   Aliases:
+      User
+        -- use getOne('User') -- returns a modUser object
+      Namespace
+        -- use getOne('Namespace') -- returns a modNamespace object
+<a name="modWebLink"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modWebLink</h3>
+   Extends: xPDOObject
+<a name="modWorkspace"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modWorkspace</h3>
+   Extends: xPDOObject
+   Table: modx_workspaces
+   Fields:
+      name (string)
+      path (string)
+      created (timestamp)
+      active (boolean)
+      attributes (array)
+   Indexes:
+        name
+        path
+        active
+   Aliases:
+      Packages
+        -- use getMany('Packages') -- returns an array of transport.modTransportPackage objects
+<a name="modXMLRPCResource"></a>
+
+<a href="[[~[[*id]]]]#top">back to top . . .</a>
+<h3>modXMLRPCResource</h3>
+   Extends: xPDOObject
+
+</pre></div>
+
