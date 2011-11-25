@@ -15,6 +15,8 @@ if (!defined('MODX_CORE_PATH')) {
 
 require_once $modx->getOption('oe.core_path', null, $modx->getOption('core_path') . 'components/objectexplorer/') . 'model/objectexplorer/mygenerator.class.php';
 
+$modx->regClientCss($modx->getOption('oe.assets_url', null, $modx->getOption('assets_url') . 'components/objectexplorer/') . 'css/objectexplorer.css');
+
 /* make sure we can get the xPDO manager and MyGenerator */
 $manager = $modx->getManager();
 if (! $manager) {
@@ -202,7 +204,7 @@ if (! $model) {
 
 echo $top;
 echo '<h2>MODX Objects</h2>';
-echo '<div  class="jumplist" width="60%">' . "\n";
+echo '<div  class="objectexplorer_jumplist" width="60%">' . "\n";
 
 $numCols = 5;
 $cols = array_chunk($jumpList,ceil(count($jumpList)/$numCols));
@@ -211,7 +213,7 @@ $colNum = count($cols);
 
 //return '<pre>' . print_r($cols) . '</pre>';
 
-echo '<table align="center" border="0" cellpadding="2" cellspacing="5">' . "\n" ;
+echo '<table class="objectexplorer_jumplist" cellpadding="2" cellspacing="7">' . "\n" ;
 for($i = 0; $i < $rows; $i++) {
     echo '<tr>';
     for ($j = 0; $j < $colNum; $j++) {
@@ -240,5 +242,5 @@ if ($quick) {
 echo '</div>';
 unset($jumpList, $objects, $a);
 // $modx->log(modX::LOG_LEVEL_INFO, 'FINISHED');
-exit();
+return '';
 

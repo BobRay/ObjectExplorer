@@ -1,0 +1,13 @@
+div.objectexplorer_jumplist {
+    padding-left:20px;
+    margin-bottom:0px;
+}
+table.objectexplorer_jumplist {
+    background-color: #cccccc;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:0;
+}
+div.reference {
+    margin-left:20px;
+}
