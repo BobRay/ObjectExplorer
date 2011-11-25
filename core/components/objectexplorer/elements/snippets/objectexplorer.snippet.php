@@ -13,18 +13,9 @@ if (!defined('MODX_CORE_PATH')) {
     $modx->initialize('mgr');
 }
 
-$top = '<a name="top"></a>' . "\n";
-$topJump = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n";
+require_once $modx->getOption('oe.core_path', null, $modx->getOption('core_path') . 'components/objectexplorer/') . 'model/objectexplorer/mygenerator.class.php';
 
-
-//$schemaFile = 'c:/xampp/htdocs/addons/assets/mycomponents/objectexplorer/modx.mysql.schema.xml';
-$schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
-
-$quick = false;
-
-require_once 'c:/xampp/htdocs/addons/assets/mycomponents/objectexplorer/mygenerator.class.php';
-
-
+/* make sure we can get the xPDO manager and MyGenerator */
 $manager = $modx->getManager();
 if (! $manager) {
     $modx->log(modX::LOG_LEVEL_ERROR, 'Could not get Manager');
@@ -39,16 +30,45 @@ if ($generator) {
     exit();
 }
 
+$props =& $scriptProperties;
+/* anchor for top of page */
+$top = '<a name="top"></a>' . "\n";
+
+/* link to top of page for each item */
+$topJump = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n";
+
+/* MODX schema file location */
+$schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
+
+/* Are we creating a quick reference or a full reference */
+/* set it here if outside of MODX. Quick Reference is the default */
+
+//$props['full'] = 1;
+$quick = ! $modx->getOption('full', $props, null);
+
+/* MODX DB table prefix */
 $prefix = $modx->getOption('table_prefix');
+
+/* Set log stuff */
 $modx->setLogLevel(modX::LOG_LEVEL_INFO);
 $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 
-$sources['model'] = '';
-if ($model = $generator->parseSchema($schemaFile, $sources['model'])) {
+/* have the generator parse the schema and store it in $model */
+$model = $generator->parseSchema($schemaFile, '');
+if (! $model) {
+    /* The parser failed */
+    return 'Error parsing schema file';
+}
+ if ($quick) {
+    /* schema is not quite in alphabetical order */
     ksort($model);
+    /* initialize array for jump links at top of page */
     $jumpList = array();
+
+    /* $objects will be the output for a quick reference */
     $objects = '';
 
+    /* build the output from the $model array */
     foreach ($model as $key => $value) {
         $objects .= '<a name="' . $key . '"></a>' . "\n";
         $objects .= $topJump;
@@ -135,11 +155,7 @@ if ($model = $generator->parseSchema($schemaFile, $sources['model'])) {
     }
 
 } else {
-    $modx->log(modX::LOG_LEVEL_INFO, 'Error parsing schema file');
-}
-if (!$quick) {
-    unset($objects);
-
+    /* Do Full Reference */
     $jumpList = array();
     foreach ($model as $key => $value) {
         $jumpList[] = $key;
