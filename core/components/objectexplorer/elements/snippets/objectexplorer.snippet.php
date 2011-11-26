@@ -47,7 +47,7 @@ if ($generator) {
 
 $props =& $scriptProperties;
 /* link to top of page for each item */
-$props['topJump'] = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n";
+$props['topJump'] = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n<hr>\n" ;
 $props['tab'] = '    ';
 $jumpList = array();
 
@@ -60,7 +60,7 @@ $schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
 /* Are we creating a quick reference or a full reference */
 /* set it here if outside of MODX. Quick Reference is the default */
 
-//$props['full'] = 1;
+$props['full'] = 1;
 $quick = ! $modx->getOption('full', $props, null);
 
 /* Set log stuff */
@@ -85,18 +85,25 @@ if ($explorer) {
 }
 $output = '';
 $output .= $top;
-$output .= '<h2>MODX Objects</h2>';
+$output .= "<h2>MODX Objects</h2>\n";
 $output .= $explorer->getJumpListDisplay();
 
 if ($quick) {
-    $output .=  "\n" . '<div class="quick-reference">' . "\n";
-    $output .= "<pre>\n";
-    $output .= $explorer->getQuickDisplay($model);
-    $output .= "</pre>\n";
+    $output .= "\n" .'<div class="quick-reference">' ."\n";
+    foreach($model as $key => $value) {
+        $output .= $props['topJump'];
+        $output .= $explorer->getQuickSingle($key);
+    }
     $output .= "</div>\n";
 }  else {
-    $output .= "\n" .'<div class="reference">' ."\n";
-    $output .= $explorer->getFullDisplay($model);
+    $output .=  "\n" . '<div class="quick-reference">' . "\n";
+
+    //$output .= $explorer->getQuickDisplay($model);
+    $output .= "\n" .'<div class="quick-reference">' ."\n";
+    foreach($model as $key => $value) {
+        $output .= $props['topJump'];
+        $output .= $explorer->getFullSingle($key);
+    }
     $output .= "</div>\n";
 }
 

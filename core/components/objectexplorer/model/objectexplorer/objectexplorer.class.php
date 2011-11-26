@@ -40,6 +40,8 @@
      * @var xPDOManager $manager A reference to the xPDOManager using this
      * generator.
      */
+    protected $output;
+
     public $manager= null;
     /**
      * @var xPDOSchemaManager $schemaManager
@@ -114,48 +116,76 @@
      *
      * @access protected
      * @param xPDOObject &$modx MODX object
-     * @param xPDOManager &$manager A reference to a valid xPDOManager instance.
-     * @param array &$jumpList Jump list array for top of page
-     * @param array &$ props scriptProperties array
-     * @return parsed schema
+     * @param array &$model array created by parseSchema()
+     * @param array &$props scriptProperties array
+     * @return ObjectExplorer object
      */
     public function __construct(&$modx, &$model, &$props) {
         $this->modx =& $modx;
         $this->model =& $model;
         $this->props =& $props;
-
-
     }
        /**
-        * @return array $jumpList
+        * Creates jumpList array of object names from schema.
+        * Puts results in $this->jumpList
         */
-    public function getJumplist() {
-        $jumpList = array();
+    public function createJumplist() {
+        $this->jumpList = array();
         foreach ($this->model as $key => $value) {
-            $jumpList[] = $key;
-
+            $this->jumpList[] = $key;
         }
-        return $jumpList;
     }
-    /**
+
+    public function getJumplistDisplay() {
+        if (empty($this->jumpList)) {
+            $this->createJumplist();
+        }
+        $output = '<div  class="objectexplorer_jumplist" width="60%">' . "\n";
+
+        $numCols = 5;
+        $cols = array_chunk($this->jumpList,ceil(count($this->jumpList)/$numCols));
+        $rows = count($cols[0]);
+        $colNum = count($cols);
+
+        //return '<pre>' . print_r($cols) . '</pre>';
+
+        $output .= '<table class="objectexplorer_jumplist" cellpadding="2" cellspacing="7">' . "\n" ;
+        for($i = 0; $i < $rows; $i++) {
+            $output .= '<tr>';
+            for ($j = 0; $j < $colNum; $j++) {
+                $output .= '<td>' .'<a href="[[~[[*id]]]]#'. @$cols[$j][$i] .'">' . @$cols[$j][$i] . '</a></td>';
+            }
+
+            $output .= "</tr>\n";
+        }
+        $output .= "</table>\n";
+        $output .= "\n</div>\n\n";
+        return $output;
+    }
+
+
+/**
      * Return displayable quick reference as string
-     * @return string displayable quick reference
+     * @param string $objectName
+     * @return string displayable quick reference for a single object
      */
-    public function getQuickDisplay() {
+    public function getQuickSingle($objectName) {
             $objects = '';
 
         /* MODX DB table prefix */
         $prefix = $this->modx->getOption('table_prefix');
-        
+
 
         /* build the output from the $model array */
-        foreach ($this->model as $key => $value) {
+        //foreach ($this->model as $key => $value) {
+        $key = $objectName;
+        $value = $this->model[$objectName];
             $objects .= '<a name="' . $key . '"></a>' . "\n";
-            $objects .= $this->props['topJump'];
-            //$jumpList[] = $key;
-            $objects .= '<h3>' . $key . '</h3>';
+            //$objects .= $this->props['topJump'];
+            $objects .= "\n<h3>" . $key .  "</h3>\n<pre>";
+
             if (isset($value['extends'])) {
-                $objects .= "\n" . '   Extends: ' . $value['extends'] . "\n";
+                $objects .= "\n" . '   Extends: ' . $value['extends'];
             }
             if (isset($value['table'])) {
                 $objects .= '   Table: ' . $prefix . $value['table'] . "\n";
@@ -227,90 +257,53 @@
                             } else {
                                 $objects .= "\n" . '        -- use getMany(\'' . $composite . '\') -- returns an array of ' . $compositeValue['class'] . ' objects';
                             }
-                            $objects .= "\n";
+                            //$objects .= "\n";
                         }
                     }
                 }
             }
-        }
+
         /* take out the top "back to top" link */
         $objects = preg_replace('/<a href=.*back to top.*<\/a>/','',$objects,1);
-        return $objects;
+        return $objects . "\n</pre>\n";
     }
-    public function getFullDisplay() {
-    /* Do Full Reference */
-    $jumpList = array();
-    foreach ($this->model as $key => $value) {
-        $jumpList[] = $key;
-
+    public function getFullSingle($objectName) {
+     /* Do Full Reference  for single object*/
+    $this->output  = "\n" .'<a name="' . $objectName . '"></a>';
+    $this->output .= "\n<h3>" . $objectName . "</h3>\n<pre>";
+    $this->doArray($this->model[$objectName], 1);
+    $this->output .= "\n</pre>\n";
+    return $this->output;
     }
-    $a = print_r($this->model, true);
-    /* fix typo in schema */
-    $a = str_replace('sctive', 'active', $a);
-    /* move '(' to end of line above */
-    $a = preg_replace('/Array[\s\n\r]*\(/', " Array (", $a);
-    /* remove outer array indicators */
-    $a = substr($a, 8);
-    $a = substr($a, 0, -2);
-    /* delete empty lines */
-    $a = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $a);
 
-    /* move all ) characters 4 spaces left */
-    $a = preg_replace('/\s{4}\)/', ')', $a);
-
-    /* move main heads to left margin */
-
-    $a = preg_replace("/\n\s{4}\[([a-zA-Z]*)\]/", "\n<a name=\"$1\"></a>" . $this->props['topJump'] . "<hr>\n<pre>\n[$1]", $a);
-    $a = str_replace("\n    )", "\n)</pre>\n", $a);
-
-    /* Move everything else over where it belongs */
-    $t = $this->props['tab']; /* tab width */
-
-
-    $a = str_replace("\n            [", "\n{$t}[", $a);
-    $a = str_replace("\n            )", "\n{$t})", $a);
-
-    $a = str_replace("\n                    [", "\n{$t}{$t}[", $a);
-    $a = str_replace("\n                    )", "\n{$t}{$t})", $a);
-
-    $a = str_replace("\n                            [", "\n{$t}{$t}{$t}[", $a);
-    $a = str_replace("\n                            )", "\n{$t}{$t}{$t})", $a);
-
-    $a = str_replace("\n                                    [", "\n{$t}{$t}{$t}{$t}[", $a);
-    $a = str_replace("\n                                    )", "\n{$t}{$t}{$t}{$t})", $a);
-
-    $a = str_replace("\n                                            [", "\n{$t}{$t}{$t}{$t}{$t}[", $a);
-    $a = str_replace("\n                                            )", "\n{$t}{$t}{$t}{$t}{$t})", $a);
-    /* take out the top "back to top" link */
-    $a = preg_replace('/<a href=.*back to top.*<\/a>/', '',$a, 1);
-
-    return $a;
-    }
-    public function getJumplistDisplay() {
-        if (empty($this->jumpList)) {
-            $this->jumpList = $this->getJumpList();
-        }
-        $output = '<div  class="objectexplorer_jumplist" width="60%">' . "\n";
-
-        $numCols = 5;
-        $cols = array_chunk($this->jumpList,ceil(count($this->jumpList)/$numCols));
-        $rows = count($cols[0]);
-        $colNum = count($cols);
-
-        //return '<pre>' . print_r($cols) . '</pre>';
-
-        $output .= '<table class="objectexplorer_jumplist" cellpadding="2" cellspacing="7">' . "\n" ;
-        for($i = 0; $i < $rows; $i++) {
-            $output .= '<tr>';
-            for ($j = 0; $j < $colNum; $j++) {
-                $output .= '<td>' .'<a href="[[~[[*id]]]]#'. @$cols[$j][$i] .'">' . @$cols[$j][$i] . '</a></td>';
+    /**
+     * Recursive function to print the array
+     * Puts results in $this->output;
+     * @param array $model The big array of classes
+     * @param int $level Sets indentation level
+     * @return void
+     */
+    public function doArray($model, $level) {
+        foreach($model as $key => $value) {
+            $tab = '    ';
+            for ($i=1; $i < $level; $i++) {
+                $tab .= '    ';
             }
-
-            $output .= "</tr>\n";
+            if (is_array($value)) {
+                $key = $key=='sctive'? 'active': $key;
+                $this->output .= "\n" . $tab .  '[' . $key . ']';
+                $this->doArray($value, $level + 1);
+            } else {
+                $this->output .= "\n" . $tab  . '['. $key . '] => ' . $value;
+            }
         }
-        $output .= "</table>\n";
-        $output .= "\n</div>\n\n";
-        return $output;
+
     }
 
+   /**
+    * @return array array of object names from the schema
+    */
+    public function getJumpList() {
+        return $this->jumpList;
+    }
 }
