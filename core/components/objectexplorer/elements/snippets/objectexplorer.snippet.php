@@ -3,7 +3,13 @@
  * @package = ObjectExplorer
  *
  */
+$mtime = microtime();
+$mtime = explode(" ", $mtime);
+$mtime = $mtime[1] + $mtime[0];
+$tstart = $mtime;
+/* get rid of time limit */
 
+set_time_limit(0);
 if (!defined('MODX_CORE_PATH')) {
     $outsideModx = true;
     /* put the path to your core in the next line to run outside of MODx */
@@ -54,7 +60,7 @@ $schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
 /* Are we creating a quick reference or a full reference */
 /* set it here if outside of MODX. Quick Reference is the default */
 
-$props['full'] = 1;
+//$props['full'] = 1;
 $quick = ! $modx->getOption('full', $props, null);
 
 /* Set log stuff */
@@ -101,4 +107,12 @@ if ($outsideModx) {
 } else {
     return $output;
 }
+$mtime= microtime();
+$mtime= explode(" ", $mtime);
+$mtime= $mtime[1] + $mtime[0];
+$tend= $mtime;
+$totalTime= ($tend - $tstart);
+$totalTime= sprintf("%2.4f s", $totalTime);
+
+$modx->log(modX::LOG_LEVEL_INFO,"Execution time: {$totalTime}\n");
 
