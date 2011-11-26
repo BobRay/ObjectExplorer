@@ -106,7 +106,7 @@
      *
      * @access protected
      * @param xPDOManager &$manager A reference to a valid xPDOManager instance.
-     * @return xPDOGenerator
+     * @return MyGenerator object
      */
     public function __construct(& $manager) {
         $this->manager= & $manager;
@@ -188,7 +188,7 @@
      * @param string $outputDir The directory in which to generate the class and
      * map files into.
      * @param boolean $compile Create compiled copies of the classes and maps from the schema.
-     * @return boolean True on success, false on failure.
+     * @return array schema file converted to a multi-dimensional array.
      */
     public function parseSchema($schemaFile, $outputDir= '', $compile= false) {
         $this->schemaFile= $schemaFile;
