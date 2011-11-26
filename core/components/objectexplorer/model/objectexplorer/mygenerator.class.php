@@ -2,7 +2,7 @@
 /*
  * Copyright 2010-2011 by MODX, LLC.
  *
- * This file is part of xPDO.
+ * This file is adapted from a part of xPDO.
  *
  * xPDO is free software; you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
@@ -19,7 +19,7 @@
  */
 
 /**
- * Class for reverse and forward engineering xPDO domain models.
+ * Class for Parsing xPDO schema files.
  *
  * @package objectexplorer
   */
