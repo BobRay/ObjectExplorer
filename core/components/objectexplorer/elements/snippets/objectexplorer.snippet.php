@@ -54,7 +54,7 @@ $schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
 /* Are we creating a quick reference or a full reference */
 /* set it here if outside of MODX. Quick Reference is the default */
 
-//$props['full'] = 1;
+$props['full'] = 1;
 $quick = ! $modx->getOption('full', $props, null);
 
 /* Set log stuff */
@@ -83,26 +83,18 @@ $output .= '<h2>MODX Objects</h2>';
 $output .= $explorer->getJumpListDisplay();
 
 if ($quick) {
-    $output .= $explorer->getQuickDisplay($model);
-} else {
-    $output .= $explorer->getFullDisplay($model);
-}
-if ($quick) {
     $output .=  "\n" . '<div class="quick-reference">' . "\n";
-    $output .= "    <pre>\n";
+    $output .= "<pre>\n";
+    $output .= $explorer->getQuickDisplay($model);
+    $output .= "</pre>\n";
+    $output .= "</div>\n";
 }  else {
     $output .= "\n" .'<div class="reference">' ."\n";
-}
-if ($quick) {
-    $output .= $explorer->getQuickDisplay($model);
-} else {
     $output .= $explorer->getFullDisplay($model);
+    $output .= "</div>\n";
 }
+
 unset($model);
-if ($quick) {
-     $output .= "    </pre>\n";
-}
-$output .= "</div>\n";
 
 if ($outsideModx) {
     echo $output;
