@@ -3,7 +3,8 @@
  * Copyright 2010-2011 by MODX, LLC.
  *
  * This file is adapted from a part of xPDO.
- *
+ * xPDO was created by Jason Coward
+ * 
  * xPDO is free software; you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
@@ -47,10 +48,6 @@
      * @var string $outputDir The absolute path to output the class and map
      * files to.
      */
-    public $outputDir= '';
-    /**
-     * @var string $schemaFile An absolute path to the schema file.
-     */
     public $schemaFile= '';
     /**
      * @var string $schemaContent The stored content of the newly-created schema
@@ -61,24 +58,7 @@
      * @var string $classTemplate The class template string to build the class
      * files from.
      */
-    public $classTemplate= '';
-    /**
-     * @var string $platformTemplate The class platform template string to build
-     * the class platform files from.
-     */
-    public $platformTemplate= '';
-    /**
-     * @var string $mapHeader The map header string to build the map files from.
-     */
-    public $mapHeader= '';
-    /**
-     * @var string $mapFooter The map footer string to build the map files from.
-     */
-    public $mapFooter= '';
-    /**
-     * @var array $model The stored model array.
-     */
-    public $model= array ();
+
     /**
      * @var array $classes The stored classes array.
      */
@@ -153,32 +133,6 @@
         return trim($string);
     }
 
-    /**
-     * Format the passed default value as an XML attribute.
-     *
-     * Override this in different PDO driver implementations if necessary.
-     *
-     * @access public
-     * @param string $value The value to encapsulate in the default tag.
-     * @return string The parsed XML string
-     */
-    public function getDefault($value) {
-        $return= '';
-        if ($value !== null) {
-            $return= ' default="'.$value.'"';
-        }
-        return $return;
-    }
-
-    /**
-     * Format the passed database index value as an XML attribute.
-     *
-     * @abstract Implement this for specific PDO driver implementations.
-     * @access public
-     * @param string $index The DB representation string of the index
-     * @return string The formatted XML attribute string
-     */
-    // abstract public function getIndex($index);
 
     /**
      * Parses an XPDO XML schema and generates classes and map files from it.
@@ -192,7 +146,7 @@
      */
     public function parseSchema($schemaFile, $outputDir= '', $compile= false) {
         $this->schemaFile= $schemaFile;
-        $this->classTemplate= $this->getClassTemplate();
+        //$this->classTemplate= $this->getClassTemplate();
         if (!is_file($schemaFile)) {
             $this->manager->xpdo->log(xPDO::LOG_LEVEL_ERROR, "Could not find specified XML schema file {$schemaFile}");
             return false;
@@ -222,7 +176,7 @@
         xml_parser_free($this->xmlParser);
         unset ($this->xmlParser);
 
-return $this->map;
+    return $this->map;
 
     }
 
@@ -421,6 +375,8 @@ return $this->map;
      * Handles the closing of XML tags.
      *
      * @access protected
+     * @param xmlParser &$parser
+     * @param string &$element
      */
     protected function _handleCloseElement(& $parser, & $element) {}
 
@@ -428,94 +384,9 @@ return $this->map;
      * Handles the XML CDATA tags
      *
      * @access protected
+     * @param xmlParser &$parser
+     * @param string &$data
      */
     protected function _handleCData(& $parser, & $data) {}
 
-
-    /**
-     * Write the generated class files to the specified path.
-     *
-     * @access public
-     * @param string $path An absolute path to write the generated class files
-     * to.
-     */
-    public function outputClasses($path) {
-        return true;
-    }
-
-    /**
-     * Write the generated class maps to the specified path.
-     *
-     * @access public
-     * @param string $path An absolute path to write the generated maps to.
-     */
-    public function outputMaps($path) {
-        return true;
-    }
-
-    /**
-     * Compile the packages into a single file for quicker loading.
-     *
-     * @abstract
-     * @access public
-     * @param string $path The absolute path to compile into.
-     * @return boolean True if the compiling went successfully.
-     */
-    //abstract public function compile($path= '');
-
-    /**
-     * Return the class template for the class files.
-     *
-     * @access public
-     * @return string The class template.
-     */
-    public function getClassTemplate() {
-        if ($this->classTemplate) return $this->classTemplate;
-        $template= <<<EOD
-<?php
-class [+class+] extends [+extends+] {}
-EOD;
-        return $template;
-    }
-
-    /**
-     * Return the class platform template for the class files.
-     *
-     * @access public
-     * @return string The class platform template.
-     */
-    public function getClassPlatformTemplate($platform) {
-        if ($this->platformTemplate) return $this->platformTemplate;
-        $template= <<<EOD
-<?php
-require_once (dirname(dirname(__FILE__)) . '/[+class-lowercase+].class.php');
-class [+class+]_$platform extends [+class+] {}
-EOD;
-        return $template;
-    }
-
-    /**
-     * Gets the map header template.
-     *
-     * @access public
-     * @return string The map header template.
-     */
-    public function getMapHeader() {
-        if ($this->mapHeader) return $this->mapHeader;
-        $header= <<<EOD
-<?php
-EOD;
-        return $header;
-    }
-
-    /**
-     * Gets the map footer template.
-     *
-     * @access public
-     * @return string The map footer template.
-     */
-    public function getMapFooter() {
-        if ($this->mapFooter) return $this->mapFooter;
-        return '';
-    }
 }
