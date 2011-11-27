@@ -3,25 +3,30 @@
  * @package = ObjectExplorer
  *
  */
-$mtime = microtime();
+/*$mtime = microtime();
 $mtime = explode(" ", $mtime);
 $mtime = $mtime[1] + $mtime[0];
 $tstart = $mtime;
-/* get rid of time limit */
-
 set_time_limit(0);
+
+*/
+
+
 if (!defined('MODX_CORE_PATH')) {
     $outsideModx = true;
     /* put the path to your core in the next line to run outside of MODx */
     define(MODX_CORE_PATH, 'c:/xampp/htdocs/addons/core/');
     require_once MODX_CORE_PATH . '/model/modx/modx.class.php';
     $modx = new modX();
-    if (! $modx) {
+    if (!$modx) {
         $modx->log(modX::LOG_LEVEL_ERROR, 'Could create MODX class');
     }
     $modx->initialize('mgr');
-
 }
+/* Set log stuff */
+$modx->setLogLevel(modX::LOG_LEVEL_INFO);
+$modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
+
 
 require_once $modx->getOption('oe.core_path', null, $modx->getOption('core_path') . 'components/objectexplorer/') . 'model/objectexplorer/mygenerator.class.php';
 
@@ -32,7 +37,7 @@ $modx->regClientCss($modx->getOption('oe.assets_url', null, $modx->getOption('as
 
 /* make sure we can get the xPDO manager and MyGenerator */
 $manager = $modx->getManager();
-if (! $manager) {
+if (!$manager) {
     $modx->log(modX::LOG_LEVEL_ERROR, 'Could not get Manager');
     exit();
 }
@@ -47,7 +52,7 @@ if ($generator) {
 
 $props =& $scriptProperties;
 /* link to top of page for each item */
-$props['topJump'] = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n<hr>\n" ;
+$props['topJump'] = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n<hr>\n";
 $props['tab'] = '    ';
 $jumpList = array();
 
@@ -60,18 +65,16 @@ $schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
 /* Are we creating a quick reference or a full reference */
 /* set it here if outside of MODX. Quick Reference is the default */
 
-$props['full'] = 1;
-$quick = ! $modx->getOption('full', $props, null);
-
-/* Set log stuff */
-$modx->setLogLevel(modX::LOG_LEVEL_INFO);
-$modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
+//$props['full'] = 1;
+$quick = !$modx->getOption('full', $props, null);
 
 /* have the generator parse the schema and store it in $model */
 $model = $generator->parseSchema($schemaFile, '');
-if (! $model) {
+if (!$model) {
     /* The parser failed */
-    return 'Error parsing schema file';
+    $modx->log(modX::LOG_LEVEL_ERROR, 'Error parsing schema file');
+    exit();
+
 }
 /* schema is not quite in alphabetical order */
 ksort($model);
@@ -89,18 +92,17 @@ $output .= "<h2>MODX Objects</h2>\n";
 $output .= $explorer->getJumpListDisplay();
 
 if ($quick) {
-    $output .= "\n" .'<div class="quick-reference">' ."\n";
-    foreach($model as $key => $value) {
+    $output .= "\n" . '<div class="quick-reference">' . "\n";
+    foreach ($model as $key => $value) {
         $output .= $props['topJump'];
         $output .= $explorer->getQuickSingle($key);
     }
     $output .= "</div>\n";
-}  else {
-    $output .=  "\n" . '<div class="quick-reference">' . "\n";
+} else {
+    $output .= "\n" . '<div class="quick-reference">' . "\n";
 
-    //$output .= $explorer->getQuickDisplay($model);
-    $output .= "\n" .'<div class="quick-reference">' ."\n";
-    foreach($model as $key => $value) {
+    $output .= "\n" . '<div class="quick-reference">' . "\n";
+    foreach ($model as $key => $value) {
         $output .= $props['topJump'];
         $output .= $explorer->getFullSingle($key);
     }
@@ -114,7 +116,8 @@ if ($outsideModx) {
 } else {
     return $output;
 }
-$mtime= microtime();
+
+/*$mtime= microtime();
 $mtime= explode(" ", $mtime);
 $mtime= $mtime[1] + $mtime[0];
 $tend= $mtime;
@@ -122,4 +125,4 @@ $totalTime= ($tend - $tstart);
 $totalTime= sprintf("%2.4f s", $totalTime);
 
 $modx->log(modX::LOG_LEVEL_INFO,"Execution time: {$totalTime}\n");
-
+*/
