@@ -54,7 +54,13 @@ if ($generator) {
 
 $props =& $scriptProperties;
 /* link to top of page for each item */
-$props['topJump'] = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n<hr>\n";
+if (empty($props['topJump'])) {
+    $props['topJump'] = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n<hr>\n";
+}
+
+if (empty ($props['columns'])) {
+    $props['columns'] = 4;
+}
 $props['tab'] = '    ';
 $jumpList = array();
 
@@ -92,10 +98,10 @@ if ($explorer) {
 $output = '';
 $output .= $top;
 $output .= "<h2>MODX Objects</h2>\n";
-$output = '<div  class="objectexplorer_jumplist_div" width="60%">' . "\n";
-$output .= '<table class="objectexplorer_jumplist_table" cellpadding="2" cellspacing="7">' . "\n" ;
+$output .= '<div  class="objectexplorer_jumplist_div" width="60%">' . "\n";
+
 $output .= $explorer->getJumpListDisplay();
-$output .= "</table>\n";
+
 $output .= "\n</div>\n\n";
 
 if ($quick) {

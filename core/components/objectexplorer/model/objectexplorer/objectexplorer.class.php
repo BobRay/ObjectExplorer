@@ -141,7 +141,7 @@
             $this->createJumplist();
         }
         $output = '';
-        $numCols = 5;
+        $numCols = $this->props['columns'];
         $cols = array_chunk($this->jumpList,ceil(count($this->jumpList)/$numCols));
         $rows = count($cols[0]);
         $colNum = count($cols);
@@ -150,12 +150,14 @@
 
 
         for($i = 0; $i < $rows; $i++) {
-            $output .= '<tr>';
+            $output .= '<div class="oe_row">';
             for ($j = 0; $j < $colNum; $j++) {
-                $output .= '<td>' .'<a href="[[~[[*id]]]]#'. @$cols[$j][$i] .'">' . @$cols[$j][$i] . '</a></td>';
+                $item = @$cols[$j][$i];
+                if (!empty($item)) {
+                    $output .= '<div class="oe_cell">' .'<a href="[[~[[*id]]]]#'. $item .'">' . $item . '</a></div>';
+                }
             }
-
-            $output .= "</tr>\n";
+            $output .= "</div>\n";
         }
         return $output;
     }

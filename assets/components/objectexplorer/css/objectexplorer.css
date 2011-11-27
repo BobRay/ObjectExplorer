@@ -1,21 +1,49 @@
 div.objectexplorer_jumplist_div {
-    padding-left:50px;
-    margin-bottom:0px;
-}
-
-table.objectexplorer_jumplist_table {
     margin-left:auto;
     margin-right:auto;
-    margin-bottom:0;
-    padding:20px;
+    background-color: #dddddd;
+    margin-bottom:0px;
+    padding-top:30px;
+    padding-bottom:20px;
+    width:90em;
+
 }
 
-div.objectexplorer_jumplist_table td {
-    text-align:left;
-    vertical-align:middle;
-    color:green;
-    height:60px;
+div.oe_row {
+    display:block;
 }
+div.oe_cell {
+    font-family:"Times New Roman", Serif;
+    font-size:12pt;
+    display:inline-block;
+    width:10em;
+    text-align:left;
+    margin-left:3.2em;
+    margin-right:3.2em;
+    padding-left:0;
+    padding-right:0;
+    height:1.75em;
+
+}
+
+div.oe_cell a {
+    text-decoration:none;
+    color:black;
+    padding-left:.5em;
+    padding-right:.5em;
+}
+
+div.oe_cell a:hover {
+    text-decoration:none;
+    color:black;
+    background-color:#eeeeee;
+}
+div.oe_cell a:visited {
+    text-decoration:none;
+    color:gray;
+}
+
+
 div.full-reference {
     margin-left:20px;
 }
@@ -23,3 +51,19 @@ div.full-reference {
 div.quick-reference {
     margin-left:20px;
 }
+
+div.full-reference a {
+    color:green;
+    padding-left:.5em;
+    padding-right:.5em;
+
+}
+
+div.full-reference a:hover {
+    color:green;
+    background-color:#ffffff !important;
+    padding-left:.5em;
+    padding-right:.5em;
+
+}
+
