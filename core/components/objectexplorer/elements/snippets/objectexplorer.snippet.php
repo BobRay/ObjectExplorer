@@ -70,6 +70,7 @@ $quick = !$modx->getOption('full', $props, null);
 
 /* have the generator parse the schema and store it in $model */
 $model = $generator->parseSchema($schemaFile, '');
+
 if (!$model) {
     /* The parser failed */
     $modx->log(modX::LOG_LEVEL_ERROR, 'Error parsing schema file');
@@ -99,9 +100,7 @@ if ($quick) {
     }
     $output .= "</div>\n";
 } else {
-    $output .= "\n" . '<div class="quick-reference">' . "\n";
-
-    $output .= "\n" . '<div class="quick-reference">' . "\n";
+    $output .= "\n" . '<div class="full-reference">' . "\n";
     foreach ($model as $key => $value) {
         $output .= $props['topJump'];
         $output .= $explorer->getFullSingle($key);
@@ -109,7 +108,7 @@ if ($quick) {
     $output .= "</div>\n";
 }
 
-unset($model);
+unset($model, $explorer);
 
 if ($outsideModx) {
     echo $output;
