@@ -65,7 +65,7 @@ $schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
 /* Are we creating a quick reference or a full reference */
 /* set it here if outside of MODX. Quick Reference is the default */
 
-//$props['full'] = 1;
+$props['full'] = 1;
 $quick = !$modx->getOption('full', $props, null);
 
 /* have the generator parse the schema and store it in $model */
@@ -95,15 +95,15 @@ $output .= $explorer->getJumpListDisplay();
 if ($quick) {
     $output .= "\n" . '<div class="quick-reference">' . "\n";
     foreach ($model as $key => $value) {
-        $output .= $props['topJump'];
         $output .= $explorer->getQuickSingle($key);
+        $output .= $props['topJump'];
     }
     $output .= "</div>\n";
 } else {
     $output .= "\n" . '<div class="full-reference">' . "\n";
     foreach ($model as $key => $value) {
-        $output .= $props['topJump'];
         $output .= $explorer->getFullSingle($key);
+        $output .= $props['topJump'];
     }
     $output .= "</div>\n";
 }
