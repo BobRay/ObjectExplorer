@@ -22,6 +22,8 @@ if (!defined('MODX_CORE_PATH')) {
         $modx->log(modX::LOG_LEVEL_ERROR, 'Could create MODX class');
     }
     $modx->initialize('mgr');
+} else {
+    $outsideModx = false;
 }
 /* Set log stuff */
 $modx->setLogLevel(modX::LOG_LEVEL_INFO);
@@ -90,7 +92,11 @@ if ($explorer) {
 $output = '';
 $output .= $top;
 $output .= "<h2>MODX Objects</h2>\n";
+$output = '<div  class="objectexplorer_jumplist_div" width="60%">' . "\n";
+$output .= '<table class="objectexplorer_jumplist_table" cellpadding="2" cellspacing="7">' . "\n" ;
 $output .= $explorer->getJumpListDisplay();
+$output .= "</table>\n";
+$output .= "\n</div>\n\n";
 
 if ($quick) {
     $output .= "\n" . '<div class="quick-reference">' . "\n";

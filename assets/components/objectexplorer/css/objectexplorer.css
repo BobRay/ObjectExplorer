@@ -1,14 +1,25 @@
-div.objectexplorer_jumplist {
-    padding-left:20px;
+div.objectexplorer_jumplist_div {
+    padding-left:50px;
     margin-bottom:0px;
 }
-table.objectexplorer_jumplist {
-    background-color: #cccccc;
+
+table.objectexplorer_jumplist_table {
     margin-left:auto;
     margin-right:auto;
     margin-bottom:0;
     padding:20px;
 }
-div.reference {
+
+div.objectexplorer_jumplist_table td {
+    text-align:left;
+    vertical-align:middle;
+    color:green;
+    height:60px;
+}
+div.full-reference {
+    margin-left:20px;
+}
+
+div.quick-reference {
     margin-left:20px;
 }

@@ -140,8 +140,7 @@
         if (empty($this->jumpList)) {
             $this->createJumplist();
         }
-        $output = '<div  class="objectexplorer_jumplist" width="60%">' . "\n";
-
+        $output = '';
         $numCols = 5;
         $cols = array_chunk($this->jumpList,ceil(count($this->jumpList)/$numCols));
         $rows = count($cols[0]);
@@ -149,7 +148,7 @@
 
         //return '<pre>' . print_r($cols) . '</pre>';
 
-        $output .= '<table class="objectexplorer_jumplist" cellpadding="2" cellspacing="7">' . "\n" ;
+
         for($i = 0; $i < $rows; $i++) {
             $output .= '<tr>';
             for ($j = 0; $j < $colNum; $j++) {
@@ -158,8 +157,6 @@
 
             $output .= "</tr>\n";
         }
-        $output .= "</table>\n";
-        $output .= "\n</div>\n\n";
         return $output;
     }
 
