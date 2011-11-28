@@ -303,6 +303,9 @@
     * @return array array of object names from the schema
     */
     public function getJumpList() {
+        if (empty($this->jumpList)) {
+            $this->createJumplist();
+        }
         return $this->jumpList;
     }
 }
