@@ -19,12 +19,18 @@ if (!defined('MODX_CORE_PATH')) {
     require_once MODX_CORE_PATH . '/model/modx/modx.class.php';
     $modx = new modX();
     if (!$modx) {
-        $modx->log(modX::LOG_LEVEL_ERROR, 'Could create MODX class');
+        $modx->log(modX::LOG_LEVEL_ERROR, 'Could not create MODX class');
     }
     $modx->initialize('mgr');
 } else {
     $outsideModx = false;
 }
+/* load lexicon */
+$language = $modx->getOption('language', $scriptProperties, null);
+$language = $language ? $language . ':' : '';
+$modx->lexicon->load($language . 'objectexplorer:default');
+
+
 /* Set log stuff */
 $modx->setLogLevel(modX::LOG_LEVEL_INFO);
 $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
@@ -40,7 +46,7 @@ $modx->regClientCss($modx->getOption('oe.assets_url', null, $modx->getOption('as
 /* make sure we can get the xPDO manager and MyGenerator */
 $manager = $modx->getManager();
 if (!$manager) {
-    $modx->log(modX::LOG_LEVEL_ERROR, 'Could not get Manager');
+    $modx->log(modX::LOG_LEVEL_ERROR, $modx->lexicon('oe_could_not_get_manager'));
     exit();
 }
 
@@ -48,14 +54,14 @@ $generator = new MyGenerator($manager);
 if ($generator) {
     //$modx->log(modX::LOG_LEVEL_INFO, 'Got mygenerator');
 } else {
-    $modx->log(modX::LOG_LEVEL_ERROR, 'Could not get Generator');
+    $modx->log(modX::LOG_LEVEL_ERROR, $modx->lexicon('oe_could_not_get_generator'));
     exit();
 }
 
 $props =& $scriptProperties;
 /* link to top of page for each item */
 if (empty($props['topJump'])) {
-    $props['topJump'] = "\n" . '<a href="[[~[[*id]]]]#top">back to top . . .</a>' . "\n<hr>\n";
+    $props['topJump'] = "\n" . '<a href="[[~[[*id]]]]#top">' . $modx->lexicon('oe_back_to_top') . '</a>' . "\n<hr>\n";
 }
 
 if (empty ($props['columns'])) {
@@ -81,7 +87,7 @@ $model = $generator->parseSchema($schemaFile, '');
 
 if (!$model) {
     /* The parser failed */
-    $modx->log(modX::LOG_LEVEL_ERROR, 'Error parsing schema file');
+    $modx->log(modX::LOG_LEVEL_ERROR, $modx->lexicon('oe_error_parsing_schema_file'));
     exit();
 
 }
@@ -92,12 +98,12 @@ $explorer = new ObjectExplorer($modx, $model, $props);
 if ($explorer) {
     //$modx->log(modX::LOG_LEVEL_INFO, 'Got mygenerator');
 } else {
-    $modx->log(modX::LOG_LEVEL_ERROR, 'Could not get Explorer');
+    $modx->log(modX::LOG_LEVEL_ERROR, $modx->lexicon('oe_could_not_get_explorer'));
     exit();
 }
 $output = '';
 $output .= $top;
-$output .= "<h2>MODX Objects</h2>\n";
+$output .= "<h2>" . $modx->lexicon('oe_modx_objects') . "</h2>\n";
 $output .= '<div  class="objectexplorer_jumplist_div" width="60%">' . "\n";
 
 $output .= $explorer->getJumpListDisplay();
