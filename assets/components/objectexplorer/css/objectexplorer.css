@@ -67,3 +67,17 @@ div.full-reference a:hover {
 
 }
 
+div.quick-reference a {
+    color:blue;
+    padding-left:.5em;
+    padding-right:.5em;
+
+}
+
+div.quick-reference a:hover {
+    color:blue;
+    background-color:#ffffff !important;
+    padding-left:.5em;
+    padding-right:.5em;
+
+}
