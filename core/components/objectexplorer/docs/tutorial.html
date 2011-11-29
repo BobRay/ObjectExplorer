@@ -7,24 +7,24 @@ Go to System | Package Management on the main menu in the MODx Manager and click
 <h3>Usage</h3>
 <p>To execute ObjectExplorer, just create a new resource to display the output and put a snippet tag for it in the Resource content field:</p>
 
-<pre>
+<pre><fixedpre>
     [[ObjectExplorer]]
-</pre>
+</fixedpre></pre>
 
 <p>This tag is equivalent to the one above and can be used if you want to use a template variable to set the type of display, create the display dynamically based on user input, or call ObjectExplorer with runSnippet():</p>
 
-<pre>
+<pre><fixedpre>
     [[ObjectExplorer? &full=`0`]]
-</pre>
+</fixedpre></pre>
 
 
 <p>By default, ObjectExplorer will display a quick reference to the MODX objects in alphabetical order. This is the recommended display because it contains the fields of the objects, the aliases of related objects, how to use those aliases and what they return.</p>
 
 <p>Although the quick reference contains most of the information you might want, it does leave some things out, such as the types of the aliases (aggregate or composite) and the default values of the fields. If you would like a full dump of the schema as an array, use this tag instead:</p>
 
-<pre>
+<pre><fixedpre>
     [[ObjectExplorer? &full=`1`]]
-</pre>
+</fixedpre></pre>
 
 <h3>ObjectExplorer Properties</h3>
 <p>There are only two useful properties for ObjectExplorer at this point:</p>
@@ -52,7 +52,7 @@ Go to System | Package Management on the main menu in the MODx Manager and click
 
     </tbody>
 </table>
-
+<p>&nbsp;</p>
         <p>If you change the number of columns, you'll probably need to change the width of div.objectexplorer_jumplist_div in the objectexplorer.css file.</p>
 
 <h3>Other Uses</h3>
@@ -69,5 +69,7 @@ Go to System | Package Management on the main menu in the MODx Manager and click
     <li>or $explorer-&gt;getFullSingle('objectName')</li>
     <li>return the result of that call</li>
 </ul>
+
+<p>&nbsp;</p>
 
         
