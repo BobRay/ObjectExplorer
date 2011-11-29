@@ -1,0 +1,71 @@
+<p>ObjectExplorer displays information about the various objects in the MODX  Revolution database. It's output is derived from the MODX schema file so it will display the current information for the version of MODX you are using.</p>
+        
+<h3>Installing ObjectExplorer for MODx Revolution</h3>
+<p>
+Go to System | Package Management on the main menu in the MODx Manager and click on the "Download Extras" button. That will take you to the Revolution Repository (AKA Web Transport Facility). Put ObjectExplorer in the search box and press Enter. Click on the "Download" button, and when it changes to "Downloaded," click on the "Finish" button. That should bring you back to your Package Management grid. Right click on ObjectExplorer and select "Install Package." The ObjectExplorer snippet should now be installed.</p>
+
+<h3>Usage</h3>
+<p>To execute ObjectExplorer, just create a new resource to display the output and put a snippet tag for it in the Resource content field:</p>
+
+<pre>
+    [[ObjectExplorer]]
+</pre>
+
+<p>This tag is equivalent to the one above and can be used if you want to use a template variable to set the type of display, create the display dynamically based on user input, or call ObjectExplorer with runSnippet():</p>
+
+<pre>
+    [[ObjectExplorer? &full=`0`]]
+</pre>
+
+
+<p>By default, ObjectExplorer will display a quick reference to the MODX objects in alphabetical order. This is the recommended display because it contains the fields of the objects, the aliases of related objects, how to use those aliases and what they return.</p>
+
+<p>Although the quick reference contains most of the information you might want, it does leave some things out, such as the types of the aliases (aggregate or composite) and the default values of the fields. If you would like a full dump of the schema as an array, use this tag instead:</p>
+
+<pre>
+    [[ObjectExplorer? &full=`1`]]
+</pre>
+
+<h3>ObjectExplorer Properties</h3>
+<p>There are only useful properties for ObjectExplorer at this point:</p>
+
+<table class="properties">
+    <tbody>
+    <tr>
+        <th>Property</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
+
+    <tr>
+        <td>full</td>
+        <td>(optional) display full version of schema</td>
+        <td>No</td>
+    </tr>
+
+    <tr>
+        <td>columns</td>
+        <td>(optional) Sets the number of columns in the jumplist at the top of the display</td>
+        <td>4</td>
+    </tr>
+
+
+    </tbody>
+</table>
+
+<h3>Other Uses</h3>
+<p>The snippet code can be run outside of MODX if you would like to produce output on your local machine for reference or pasting. To do that successfully, you'll need to modify the path information near the top of the code. If you want the full display (as opposed to the quick display), you'll also need to set the $props['full'] variable to 1.
+</p>
+
+<p>The ObjectExplorer class can also be used to display information on a single MODX object. To do that:
+    <ul>
+    <li>copy the code at the top of the snippet that creates the classes</li>
+    <li>call $explorer-&gt>parseSchema($model)</li>
+
+    <li>set $objectName to the name of any MODX object (e.g. modResource, modChunk)</li>
+    <li>call either $explorer-&gt;getQuickSingle('objectName')</li>
+    <li>or $explorer-&gt;getFullSingle('objectName')</li>
+    <li>return the result of that call</li>
+</ul>
+
+        
