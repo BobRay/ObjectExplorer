@@ -79,7 +79,7 @@ $schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
 /* Are we creating a quick reference or a full reference */
 /* set it here if outside of MODX. Quick Reference is the default */
 
-$props['full'] = 1;
+//$props['full'] = 1;
 $quick = !$modx->getOption('full', $props, null);
 
 /* have the generator parse the schema and store it in $model */

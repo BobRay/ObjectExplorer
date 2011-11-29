@@ -187,11 +187,11 @@
                 $objects .= "\n" . '   Extends: ' . $value['extends'];
             }
             if (isset($value['table'])) {
-                $objects .= '   Table: ' . $prefix . $value['table'] . "\n";
+                $objects .= "\n" . '   Table: ' . $prefix . $value['table'] . "\n";
             }
 
             if (isset($value['fields'])) {
-                $objects .= '   Fields:' . "\n";
+                $objects .= "\n" . '   Fields:' . "\n";
                 $fields = $value['fields'];
 
                 foreach ($fields as $field => $name) {
@@ -250,7 +250,7 @@
                     //$objects .= '   Composite Aliases:' . "\n";
                     foreach ($value['composites'] as $composite => $compositeValue) {
                         if (substr($composite,0,3) != 'mod') { /* skip legacy aliases */
-                            $objects .= '      ' . $composite;
+                            $objects .= "\n" . '      ' . $composite;
                             if ($compositeValue['cardinality'] == 'one') {
                                 $objects .= "\n" . '        -- use getOne(\'' . $composite . '\') -- returns a ' . $compositeValue['class'] . ' object';
                             } else {
