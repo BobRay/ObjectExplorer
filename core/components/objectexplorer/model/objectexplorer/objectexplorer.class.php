@@ -108,6 +108,8 @@
      * @var string $indexName A placeholder for the current index name.
      */
     public $indexName= '';
+    /** @var $modx modX */
+    public $modx;
 
     protected $jumpList = array();
 
@@ -184,7 +186,7 @@
         $objects .= "\n<h3>" . $key .  "</h3>\n<pre>";
 
         if (isset($value['extends'])) {
-            $objects .= "\n" . '   Extends: ' . $value['extends'];
+            $objects .= "\n" . '   ' . $this->modx->lexicon('oe_extends') . ': ' . $value['extends'];
 
             $parentFields = $this->getInheritedFields(array(), $value['extends']);
             //$x = print_r($parentFields, true);
@@ -192,24 +194,24 @@
 
         }
         if (isset($value['table'])) {
-            $objects .= "\n" . '   Table: ' . $prefix . $value['table'] . "\n";
+            $objects .= "\n" . '   ' . $this->modx->lexicon('oe_table') . ': <fixedre>' . $prefix . $value['table'] . "</fixedpre>\n";
         }
 
         if (isset($value['fields']) || (isset($parentFields) && (!empty($parentFields)))) {
-            $objects .= "\n" . '   Fields:' . "\n";
+            $objects .= "\n" . '   ' . $this->modx->lexicon('oe_fields') . ':' . "\n";
             if (isset($parentFields) && is_array($parentFields)) {
                 foreach($parentFields as $fieldName => $data) {
-                    $objects .= '      ' . $fieldName . ' ' . $data . "\n";
+                    $objects .= '      <span class="oe_field" >' . $fieldName . '</span> ' . $data . "\n";
                 }
             }
 
             $fields = isset($value['fields'])? $value['fields']: array();
-            
+
 
            // $fields = is_array($fields)? $fields : array();
 
             foreach ($fields as $field => $name) {
-                $objects .= '      ' . $field;
+                $objects .= '      <span class="oe_field" >'  . $field . '</span> ';
 
                 if (isset($value['fieldMeta']) && in_array($field, array_keys($value['fields']),true)) {
                     if (isset($value['fieldMeta'][$field]['phptype'])) {
@@ -233,21 +235,21 @@
             }
             /* wrap long index lists */
             $i = 1;
-            $objects .= '   Indexes:';
+            $objects .= '   ' . $this->modx->lexicon('oe_indexes') . ':';
             if (count($indexArray > 5)) {
                 $indexArray = array_chunk($indexArray,ceil(count($indexArray)/5),true);
                 foreach($indexArray as $indexList) {
                     $objects .=  "\n" .'        ' . implode(', ', $indexList);
                 }
             } else {
-                $objects .= '   Indexes: ' . implode(', ', $indexArray) . "\n";
+                $objects .= '   '. $this->modx->lexicon('oe_indexes') . ': ' . implode(', ', $indexArray) . "\n";
             }
 
 
 
         }
         if (isset($value['aggregates']) || isset($value['composites'])) {
-            $objects .= "\n" .'   Aliases:' . "\n";
+            $objects .= "\n" .'   ' . $this->modx->lexicon('oe_aliases') . ':' . "\n";
         }
         if (isset($value['aggregates'])) {
             if (!empty($value['aggregates'])) {
@@ -255,10 +257,10 @@
                 foreach ($value['aggregates'] as $aggregate => $aggregateValue) {
                     if (substr($aggregate,0,3) != 'mod') { /* skip legacy aliases */
                         $objects .= '      ' . $aggregate;
-                        if ($aggregateValue['cardinality'] == 'one') {
-                            $objects .= "\n" . '        -- use getOne(\'' . $aggregate . '\') -- returns a ' . $aggregateValue['class'] . ' object';
+                        if ($aggregateValue['cardinality'] == $this->modx->lexicon('oe_one')) {
+                            $objects .= "\n" . '        -- ' . $this->modx->lexicon('oe_use_getOne') . '(\'' . $aggregate . '\') -- ' . $this->modx->lexicon('oe_returns_a') . ' ' . $aggregateValue['class'] . ' ' . $this->modx->lexicon('oe_object');
                         } else {
-                            $objects .= "\n" . '        -- use getMany(\'' . $aggregate . '\') -- returns an array of ' . $aggregateValue['class'] . ' objects';
+                            $objects .= "\n" . '        -- ' . $this->modx->lexicon('oe_getMany') . '(\'' . $aggregate . '\') -- ' . $this->modx->lexicon('oe_returns_an_array_of') . ' ' . $aggregateValue['class'] . ' ' . $this->modx->lexicon('oe_object') . 's';
                         }
                         $objects .= "\n";
                     }
@@ -271,10 +273,10 @@
                 foreach ($value['composites'] as $composite => $compositeValue) {
                     if (substr($composite,0,3) != 'mod') { /* skip legacy aliases */
                         $objects .= "\n" . '      ' . $composite;
-                        if ($compositeValue['cardinality'] == 'one') {
-                            $objects .= "\n" . '        -- use getOne(\'' . $composite . '\') -- returns a ' . $compositeValue['class'] . ' object';
+                        if ($compositeValue['cardinality'] == $this->modx->lexicon('oe_one')) {
+                            $objects .= "\n" . '        -- ' . $this->modx->lexicon('oe_use_getOne') . '(\'' . $composite . '\') -- ' . $this->modx->lexicon('oe_returns_a')  . '' . $compositeValue['class'] . ' ' . $this->modx->lexicon('oe_object');
                         } else {
-                            $objects .= "\n" . '        -- use getMany(\'' . $composite . '\') -- returns an array of ' . $compositeValue['class'] . ' objects';
+                            $objects .= "\n" . '        -- ' . $this->modx->lexicon('oe_use_getMany') . '(\'' . $composite . '\') -- ' . $this->modx->lexicon('oe_returns_an_array_of') . ' ' . $compositeValue['class'] . ' ' . $this->modx->lexicon('oe_object') . 's';
                         }
                         //$objects .= "\n";
                     }
@@ -313,7 +315,7 @@
 
                             // $objects .= ' (' . getType($name) . ")\n";
                         }
-                        $newFields[$key] = $type . ' - inherited from ' . $class;
+                        $newFields[$key] = $type . ' - ' . $this->modx->lexicon('oe_inherited_from') . ' ' . '<fixedpre>' . $class . '</fixedpre>';
                     }
                    $fields = array_merge($newFields, $fields);
                 }

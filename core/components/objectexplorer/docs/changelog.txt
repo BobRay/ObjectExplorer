@@ -1,5 +1,14 @@
 Changelog for ObjectExplorer
 
+ObjectExplorer 1.1.1
+ - Internationalized headings
+ - Changed default columns to 2
+ - Tweaks to CSS
+
+ObjectExplorer 1.1.0
+  - Quick display shows inherited fields
+  - Defaults to 2 columns
+  - Fixed E_NOTICE warnings
+
 ObjectExplorer 1.0.0
-----------------
-Initial Version
+  - Initial Version

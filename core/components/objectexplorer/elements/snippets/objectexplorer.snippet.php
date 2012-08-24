@@ -66,7 +66,7 @@ if (empty($props['topJump'])) {
 }
 
 if (empty ($props['columns'])) {
-    $props['columns'] = 4;
+    $props['columns'] = 2;
 }
 $props['tab'] = '    ';
 $jumpList = array();
@@ -105,7 +105,7 @@ if ($explorer) {
 $output = '';
 $output .= $top;
 $output .= "<h2>" . $modx->lexicon('oe_modx_objects') . "</h2>\n";
-$output .= '<div  class="objectexplorer_jumplist_div" width="60%">' . "\n";
+$output .= '<div  id="objectexplorer_jumplist_div" width="60%">' . "\n";
 
 $output .= $explorer->getJumpListDisplay();
 
