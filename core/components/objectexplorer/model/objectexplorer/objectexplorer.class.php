@@ -179,88 +179,108 @@
         //foreach ($this->model as $key => $value) {
         $key = $objectName;
         $value = $this->model[$objectName];
-            $objects .= '<a name="' . $key . '"></a>' . "\n";
-            //$objects .= $this->props['topJump'];
-            $objects .= "\n<h3>" . $key .  "</h3>\n<pre>";
+        $objects .= '<a name="' . $key . '"></a>' . "\n";
+        //$objects .= $this->props['topJump'];
+        $objects .= "\n<h3>" . $key .  "</h3>\n<pre>";
 
-            if (isset($value['extends'])) {
-                $objects .= "\n" . '   Extends: ' . $value['extends'];
+        if (isset($value['extends'])) {
+            $objects .= "\n" . '   Extends: ' . $value['extends'];
+
+            $parentFields = $this->getInheritedFields(array(), $value['extends']);
+            //$x = print_r($parentFields, true);
+            //$objects .= "\nDUMP:\n" . $x . "\n\n";
+
+        }
+        if (isset($value['table'])) {
+            $objects .= "\n" . '   Table: ' . $prefix . $value['table'] . "\n";
+        }
+
+        if (isset($value['fields']) || (isset($parentFields) && (!empty($parentFields)))) {
+            $objects .= "\n" . '   Fields:' . "\n";
+            if (isset($parentFields) && is_array($parentFields)) {
+                foreach($parentFields as $fieldName => $data) {
+                    $objects .= '      ' . $fieldName . ' ' . $data . "\n";
+                }
             }
-            if (isset($value['table'])) {
-                $objects .= "\n" . '   Table: ' . $prefix . $value['table'] . "\n";
-            }
 
-            if (isset($value['fields'])) {
-                $objects .= "\n" . '   Fields:' . "\n";
-                $fields = $value['fields'];
+            $fields = isset($value['fields'])? $value['fields']: array();
+            
 
-                foreach ($fields as $field => $name) {
-                    $objects .= '      ' . $field;
-                    if (isset($value['fieldMeta'])) {
+           // $fields = is_array($fields)? $fields : array();
+
+            foreach ($fields as $field => $name) {
+                $objects .= '      ' . $field;
+
+                if (isset($value['fieldMeta']) && in_array($field, array_keys($value['fields']),true)) {
+                    if (isset($value['fieldMeta'][$field]['phptype'])) {
                         $objects .= ' (' . $value['fieldMeta'][$field]['phptype'] . ")\n";
+                        // $objects .= ' (' . getType($name) . ")\n";
+                    } else {
+                        $objects .= "\n";
                     }
                 }
-
             }
 
-            if (isset($value['indexes'])) {
-                $indexArray = array();
-                foreach ($value['indexes'] as $index => $indexValue) {
-                    if ($index == 'sctive') {
-                        $index = 'active';
-                    }
-                    $indexArray[] = $index;
+        }
+
+        if (isset($value['indexes'])) {
+            $indexArray = array();
+            foreach ($value['indexes'] as $index => $indexValue) {
+                if ($index == 'sctive') {
+                    $index = 'active';
                 }
-                /* wrap long index lists */
-                $i = 1;
-                $objects .= '   Indexes:';
-                if (count($indexArray > 5)) {
-                    $indexArray = array_chunk($indexArray,ceil(count($indexArray)/5),true);
-                    foreach($indexArray as $indexList) {
-                        $objects .=  "\n" .'        ' . implode(', ', $indexList);
-                    }
-                } else {
-                    $objects .= '   Indexes: ' . implode(', ', $indexArray) . "\n";
+                $indexArray[] = $index;
+            }
+            /* wrap long index lists */
+            $i = 1;
+            $objects .= '   Indexes:';
+            if (count($indexArray > 5)) {
+                $indexArray = array_chunk($indexArray,ceil(count($indexArray)/5),true);
+                foreach($indexArray as $indexList) {
+                    $objects .=  "\n" .'        ' . implode(', ', $indexList);
                 }
-
-
-
+            } else {
+                $objects .= '   Indexes: ' . implode(', ', $indexArray) . "\n";
             }
-            if (isset($value['aggregates']) || isset($value['composites'])) {
-                $objects .= "\n" .'   Aliases:' . "\n";
-            }
-            if (isset($value['aggregates'])) {
-                if (!empty($value['aggregates'])) {
-                    //$objects .= '   Aggregate Aliases:' . "\n";
-                    foreach ($value['aggregates'] as $aggregate => $aggregateValue) {
-                        if (substr($aggregate,0,3) != 'mod') { /* skip legacy aliases */
-                            $objects .= '      ' . $aggregate;
-                            if ($aggregateValue['cardinality'] == 'one') {
-                                $objects .= "\n" . '        -- use getOne(\'' . $aggregate . '\') -- returns a ' . $aggregateValue['class'] . ' object';
-                            } else {
-                                $objects .= "\n" . '        -- use getMany(\'' . $aggregate . '\') -- returns an array of ' . $aggregateValue['class'] . ' objects';
-                            }
-                            $objects .= "\n";
+
+
+
+        }
+        if (isset($value['aggregates']) || isset($value['composites'])) {
+            $objects .= "\n" .'   Aliases:' . "\n";
+        }
+        if (isset($value['aggregates'])) {
+            if (!empty($value['aggregates'])) {
+                //$objects .= '   Aggregate Aliases:' . "\n";
+                foreach ($value['aggregates'] as $aggregate => $aggregateValue) {
+                    if (substr($aggregate,0,3) != 'mod') { /* skip legacy aliases */
+                        $objects .= '      ' . $aggregate;
+                        if ($aggregateValue['cardinality'] == 'one') {
+                            $objects .= "\n" . '        -- use getOne(\'' . $aggregate . '\') -- returns a ' . $aggregateValue['class'] . ' object';
+                        } else {
+                            $objects .= "\n" . '        -- use getMany(\'' . $aggregate . '\') -- returns an array of ' . $aggregateValue['class'] . ' objects';
                         }
+                        $objects .= "\n";
                     }
                 }
             }
-            if (isset($value['composites'])) {
-                if (!empty($value['composites'])) {
-                    //$objects .= '   Composite Aliases:' . "\n";
-                    foreach ($value['composites'] as $composite => $compositeValue) {
-                        if (substr($composite,0,3) != 'mod') { /* skip legacy aliases */
-                            $objects .= "\n" . '      ' . $composite;
-                            if ($compositeValue['cardinality'] == 'one') {
-                                $objects .= "\n" . '        -- use getOne(\'' . $composite . '\') -- returns a ' . $compositeValue['class'] . ' object';
-                            } else {
-                                $objects .= "\n" . '        -- use getMany(\'' . $composite . '\') -- returns an array of ' . $compositeValue['class'] . ' objects';
-                            }
-                            //$objects .= "\n";
+        }
+        if (isset($value['composites'])) {
+            if (!empty($value['composites'])) {
+                //$objects .= '   Composite Aliases:' . "\n";
+                foreach ($value['composites'] as $composite => $compositeValue) {
+                    if (substr($composite,0,3) != 'mod') { /* skip legacy aliases */
+                        $objects .= "\n" . '      ' . $composite;
+                        if ($compositeValue['cardinality'] == 'one') {
+                            $objects .= "\n" . '        -- use getOne(\'' . $composite . '\') -- returns a ' . $compositeValue['class'] . ' object';
+                        } else {
+                            $objects .= "\n" . '        -- use getMany(\'' . $composite . '\') -- returns an array of ' . $compositeValue['class'] . ' objects';
                         }
+                        //$objects .= "\n";
                     }
                 }
             }
+        }
 
         /* take out the top "back to top" link */
         $objects = preg_replace('/<a href=.*back to top.*<\/a>/','',$objects,1);
@@ -273,6 +293,40 @@
     $this->doArray($this->model[$objectName], 1);
     $this->output .= "\n</pre>\n";
     return $this->output;
+    }
+
+    public function getInheritedFields($fields, $class, $i = -1) {
+        $z = 1;
+        if ($i == -1) {
+            $fields = array();
+            $i++;
+        }
+            $parent = isset($this->model[$class]) ? $this->model[$class] : array();
+            if ($parent && isset($parent['fields'])) {
+                $newFields = isset($parent['fields'])? $parent['fields'] : array();
+                if (is_array($newFields)) {
+                    foreach($newFields as $key => $value) {
+                        $type = '';
+                        if (isset($parent['fieldMeta'][$key]['phptype'])) {
+                            $type = '(' . $parent['fieldMeta'][$key]['phptype'] . ')';
+                            //$objects .= ' (' . $value['fieldMeta'][$field]['phptype'] . ")\n";
+
+                            // $objects .= ' (' . getType($name) . ")\n";
+                        }
+                        $newFields[$key] = $type . ' - inherited from ' . $class;
+                    }
+                   $fields = array_merge($newFields, $fields);
+                }
+                /*foreach ($newFields as $key => $value) {
+                    $fields[$key] = $value;
+                }*/
+                if (isset($parent['extends'])) {
+                    $fields = $this->getInHeritedFields($fields, $parent['extends'], $i);
+                }
+            }
+
+
+        return $fields;
     }
 
     /**

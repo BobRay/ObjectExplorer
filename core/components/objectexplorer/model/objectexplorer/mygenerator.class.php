@@ -204,9 +204,18 @@
                             if (!isset ($this->classes[$this->className])) {
                                 $this->classes[$this->className]= array ();
                                 $this->map[$this->className]= array ();
+                                if(isset($attributes['extends'])) {
+                                    $extends = $attributes['extends'];
+                                }
                                 $this->classes[$this->className]['extends']= $this->model['baseClass'];
-                            /* my addition - put extends info in map array */
-                            $this->map[$this->className]['extends']= $this->model['baseClass'];
+                                /* my addition - put extends info in map array */
+                                //$this->map[$this->className]['extends']= $this->model['baseClass'];
+                                if ($extends) {
+                                    $this->map[$this->className]['extends'] = $extends;
+                                } else {
+                                    $this->map[$this->className]['extends'] = $this->model['baseClass'];
+                                }
+                                /* ********* */
                             }
                             if (isset ($this->model['package'])) {
                                 $this->map[$this->className]['package']= $this->model['package'];
