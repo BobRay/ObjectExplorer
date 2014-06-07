@@ -194,7 +194,7 @@
 
         }
         if (isset($value['table'])) {
-            $objects .= "\n" . '   ' . $this->modx->lexicon('oe_table') . ': <fixedre>' . $prefix . $value['table'] . "</fixedpre>\n";
+            $objects .= "\n" . '   ' . $this->modx->lexicon('oe_table') . ': <fixedpre>' . $prefix . $value['table'] . "</fixedpre>\n";
         }
 
         if (isset($value['fields']) || (isset($parentFields) && (!empty($parentFields)))) {
@@ -260,7 +260,7 @@
                         if ($aggregateValue['cardinality'] == $this->modx->lexicon('oe_one')) {
                             $objects .= "\n" . '        -- ' . $this->modx->lexicon('oe_use_getOne') . '(\'' . $aggregate . '\') -- ' . $this->modx->lexicon('oe_returns_a') . ' ' . $aggregateValue['class'] . ' ' . $this->modx->lexicon('oe_object');
                         } else {
-                            $objects .= "\n" . '        -- ' . $this->modx->lexicon('oe_getMany') . '(\'' . $aggregate . '\') -- ' . $this->modx->lexicon('oe_returns_an_array_of') . ' ' . $aggregateValue['class'] . ' ' . $this->modx->lexicon('oe_object') . 's';
+                            $objects .= "\n" . '        -- ' . $this->modx->lexicon('oe_use_getMany') . '(\'' . $aggregate . '\') -- ' . $this->modx->lexicon('oe_returns_an_array_of') . ' ' . $aggregateValue['class'] . ' ' . $this->modx->lexicon('oe_object') . 's';
                         }
                         $objects .= "\n";
                     }

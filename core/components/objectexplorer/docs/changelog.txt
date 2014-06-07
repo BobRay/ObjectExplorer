@@ -1,5 +1,8 @@
 Changelog for ObjectExplorer
 
+ObjectExplorer 1.1.2-pl
+ - fix bug with fixedpre that causes color change in some browsers
+
 ObjectExplorer 1.1.1
  - Internationalized headings
  - Changed default columns to 2
