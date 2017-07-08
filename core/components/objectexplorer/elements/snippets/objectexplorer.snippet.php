@@ -15,7 +15,7 @@ set_time_limit(0);
 if (!defined('MODX_CORE_PATH')) {
     $outsideModx = true;
     $scriptProperties = array();
-    /* put the path to your core in the next line to run outside of MODx */
+    /* put the path to your core in the next line to run outside of MODX */
     define('MODX_CORE_PATH', 'c:/xampp/htdocs/addons/core/');
     require_once MODX_CORE_PATH . '/model/modx/modx.class.php';
     $modx = new modX();

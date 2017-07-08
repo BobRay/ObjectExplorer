@@ -1,7 +1,7 @@
 <?php
 /**
  * ObjectExplorer
- * Copyright 2011 Bob Ray
+ * Copyright 2011-2017 Bob Ray
  *
  * ObjectExplorer is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,7 +17,7 @@
  * Suite 330, Boston, MA 02111-1307 USA
  *
  * @package ObjectExplorer
- * @author Bob Ray <http://bobsguides.com>
+ * @author Bob Ray <https://bobsguides.com>
  
  *
  * Description: The ObjectExplorer snippet presents a form in the front end for
