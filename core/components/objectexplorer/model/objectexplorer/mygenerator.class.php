@@ -36,10 +36,7 @@
      * generator.
      */
     public $manager= null;
-    /**
-     * @var xPDOSchemaManager $schemaManager
-     */
-    public $schemaManager= null;
+
     /**
      * @var xmlParser $xmlParser
      */
@@ -142,7 +139,7 @@
      * @param string $outputDir The directory in which to generate the class and
      * map files into.
      * @param boolean $compile Create compiled copies of the classes and maps from the schema.
-     * @return array schema file converted to a multi-dimensional array.
+     * @return array | false schema file converted to a multi-dimensional array, false on error.
      */
     public function parseSchema($schemaFile, $outputDir= '', $compile= false) {
         $this->schemaFile= $schemaFile;
