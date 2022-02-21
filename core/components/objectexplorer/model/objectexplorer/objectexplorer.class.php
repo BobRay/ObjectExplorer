@@ -43,10 +43,7 @@
     protected $output;
 
     public $manager= null;
-    /**
-     * @var xPDOSchemaManager $schemaManager
-     */
-    public $schemaManager= null;
+
     /**
      * @var xmlParser $xmlParser
      */
@@ -111,6 +108,9 @@
     /** @var $modx modX */
     public $modx;
 
+    /** @var $props array -- scriptProperties array */
+    public $props;
+
     protected $jumpList = array();
 
     /**
@@ -120,7 +120,6 @@
      * @param xPDOObject &$modx MODX object
      * @param array &$model array created by parseSchema()
      * @param array &$props scriptProperties array
-     * @return ObjectExplorer object
      */
     public function __construct(&$modx, &$model, &$props) {
         $this->modx =& $modx;
@@ -138,6 +137,9 @@
         }
     }
 
+    /** Produces jumplist string
+     * @return string;
+     */
     public function getJumplistDisplay() {
         if (empty($this->jumpList)) {
             $this->createJumplist();
@@ -234,7 +236,7 @@
                 $indexArray[] = $index;
             }
             /* wrap long index lists */
-            $i = 1;
+
             $objects .= '   ' . $this->modx->lexicon('oe_indexes') . ':';
             if (count($indexArray) > 5) {
                 $indexArray = array_chunk($indexArray,ceil(count($indexArray)/5),true);
@@ -298,7 +300,7 @@
     }
 
     public function getInheritedFields($fields, $class, $i = -1) {
-        $z = 1;
+
         if ($i == -1) {
             $fields = array();
             $i++;
@@ -323,7 +325,7 @@
                     $fields[$key] = $value;
                 }*/
                 if (isset($parent['extends'])) {
-                    $fields = $this->getInHeritedFields($fields, $parent['extends'], $i);
+                    $fields = $this->getInheritedFields($fields, $parent['extends'], $i);
                 }
             }
 
