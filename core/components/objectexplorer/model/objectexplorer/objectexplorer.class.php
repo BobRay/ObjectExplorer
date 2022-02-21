@@ -236,7 +236,7 @@
             /* wrap long index lists */
             $i = 1;
             $objects .= '   ' . $this->modx->lexicon('oe_indexes') . ':';
-            if (count($indexArray > 5)) {
+            if (count($indexArray) > 5) {
                 $indexArray = array_chunk($indexArray,ceil(count($indexArray)/5),true);
                 foreach($indexArray as $indexList) {
                     $objects .=  "\n" .'        ' . implode(', ', $indexList);
