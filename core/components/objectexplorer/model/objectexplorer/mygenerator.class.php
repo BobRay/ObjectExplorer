@@ -120,7 +120,7 @@
      * @return string The formatted string.
      */
     public function getClassName($string) {
-        if (is_string($string) && $strArray= explode('_', $string)) {
+        if (is_string($string) && $strArray = explode('_', $string)) {
             $return= '';
             while (list($k, $v)= each($strArray)) {
                 $return.= strtoupper(substr($v, 0, 1)) . substr($v, 1) . '';
@@ -152,6 +152,8 @@
             $this->schemaContent= implode('', $fileContent);
         }
 
+        /* Fix bug in invalid MODX schema */
+        $this->schemaContent = str_replace('<!\\s', '!\\s', $this->schemaContent);
         /* Create the parser and set handlers. */
         $this->xmlParser= xml_parser_create('UTF-8');
 
