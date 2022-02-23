@@ -30,7 +30,7 @@
 /* Set package info be sure to set all of these */
 define('PKG_NAME','ObjectExplorer');
 define('PKG_NAME_LOWER','objectexplorer');
-define('PKG_VERSION','1.1.2');
+define('PKG_VERSION','1.2.0');
 define('PKG_RELEASE','pl');
 define('PKG_CATEGORY','ObjectExplorer');
 
