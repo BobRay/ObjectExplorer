@@ -122,7 +122,7 @@
     public function getClassName($string) {
         if (is_string($string) && $strArray = explode('_', $string)) {
             $return= '';
-            while (list($k, $v)= each($strArray)) {
+            foreach ($strArray as $k => $v) {
                 $return.= strtoupper(substr($v, 0, 1)) . substr($v, 1) . '';
             }
             $string= $return;
@@ -191,12 +191,12 @@
         $element= strtolower($element);
         switch ($element) {
             case 'model' :
-                while (list ($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     $this->model[$attrName]= $attrValue;
                 }
                 break;
             case 'object' :
-                while (list ($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     switch ($attrName) {
                         case 'class' :
                             $this->className= "{$attrValue}";
@@ -237,7 +237,7 @@
                 break;
             case 'field' :
                 $dbtype = 'varchar';
-                while (list ($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     switch ($attrName) {
                         case 'key' :
                             $this->fieldKey= "{$attrValue}";
@@ -273,7 +273,7 @@
                 break;
             case 'index' :
                 $node= array ();
-                while (list ($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     switch ($attrName) {
                         case 'name':
                             $this->indexName= $attrValue;
@@ -295,7 +295,7 @@
             case 'column' :
                 $key = '';
                 $node = array ();
-                while (list($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     switch ($attrName) {
                         case 'key':
                             $key= $attrValue;
@@ -314,7 +314,7 @@
             case 'aggregate' :
                 $alias= '';
                 $node= array ();
-                while (list ($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     switch ($attrName) {
                         case 'alias' :
                             $alias= "{$attrValue}";
@@ -331,7 +331,7 @@
             case 'composite' :
                 $alias= '';
                 $node= array ();
-                while (list ($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     switch ($attrName) {
                         case 'alias' :
                             $alias= "{$attrValue}";
@@ -347,7 +347,7 @@
                 break;
             case 'validation' :
                 $node= array ();
-                while (list ($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     $node[$attrName]= $attrValue;
                 }
                 if ($node) {
@@ -359,7 +359,7 @@
                 $field= '';
                 $name= '';
                 $node= array ();
-                while (list ($attrName, $attrValue)= each($attributes)) {
+                foreach ($attributes as $attrName => $attrValue) {
                     switch ($attrName) {
                         case 'field' :
                             $field= "{$attrValue}";
