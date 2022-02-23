@@ -7,7 +7,6 @@ ObjectExplorer 1.2.0-pl
  - Add option to show MODX 3 reference on MODX 2 sites
  - Remove deprecated code
  - Update PhpDocs
-
  - Code cleanup
 
 ObjectExplorer 1.1.2-pl
