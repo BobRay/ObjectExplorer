@@ -75,7 +75,13 @@ $jumpList = array();
 $top = '<a name="top"></a>' . "\n";
 
 /* MODX schema file location */
-$schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
+$currentVersion = $modx->getVersionData()['version'];
+$show_modx3 = (bool) $modx->getOption('show_modx3', $props, false, true);
+if ( ($currentVersion < 3) && $show_modx3) {
+    $schemaFile = MODX_CORE_PATH . 'components\objectexplorer\model\objectexplorer\modx3.mysql.schema.xml';
+} else {
+    $schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
+}
 
 /* Are we creating a quick reference or a full reference */
 /* set it here if outside of MODX. Quick Reference is the default */
