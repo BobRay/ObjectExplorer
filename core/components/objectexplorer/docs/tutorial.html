@@ -1,43 +1,50 @@
-<p>ObjectExplorer displays information about the various objects in the MODX Revolution database. It's output is derived from the MODX
-schema file so it will display the current information for the version of MODX you are using.</p>
+<p>ObjectExplorer displays information about the various objects in the MODX Revolution database. It's output is derived from the MODX schema file so it will display the current information for the version of MODX you are using.</p>
 
-<h3>Installing ObjectExplorer for MODX Revolution</h3>
+<h3>Installing ObjectExplorer for MODx Revolution</h3>
+
 <p>
-Go to System | Package Management on the main menu in the MODX Manager and click on the "Download Extras" button. That will take you to the
-Revolution Repository (AKA Web Transport Facility). Put ObjectExplorer in the search box and press Enter. Click on the "Download" button,
-and when it changes to "Downloaded," click on the "Finish" button. That should bring you back to your Package Management grid. Right click
-on ObjectExplorer and select "Install Package." The ObjectExplorer snippet should now be installed.</p>
+    Go to Extras > Installer Management on the main menu in the MODx Manager and click on the "Download Extras" button. That will take you to the Revolution Repository. Put ObjectExplorer in the search box and press Enter. Click on the "Download" button. When the download is finished, click on the "Back to Package Management" button. That should bring you back to your Package Management grid. Click on "Install" next to ObjectExplorer.</p>
 
 <h3>Usage</h3>
-<p>To execute ObjectExplorer, just create a new resource to display the output and put a snippet tag for it in the Resource content
-field:</p>
+
+<p>To execute ObjectExplorer, just create a new resource to display the output and put a snippet tag for it in the Resource content field:</p>
 
 <pre><fixedpre>
     [[ObjectExplorer]]
 </fixedpre></pre>
 
-<p>This tag is equivalent to the one above and can be used if you want to use a template variable to set the type of display, create the
-display dynamically based on user input, or call ObjectExplorer with runSnippet():</p>
+<p>This tag is equivalent to the one above and can be used if you want to use a template variable to set the type of display, create the display dynamically based on user input, or call ObjectExplorer with runSnippet():</p>
 
 <pre><fixedpre>
-    [[ObjectExplorer? &full=`0`]]
+    [[ObjectExplorer?
+        &full=`0`
+    ]]
 </fixedpre></pre>
 
+<p>If you set <code>&full=`1`</code>, you'll see a more complete display. The complete display contains more information, but it's more difficult to read.</p>
 
-<p>By default, ObjectExplorer will display a quick reference to the MODX objects in alphabetical order. This is the recommended display
-because it contains the fields of the objects (including inherited fields), the aliases of related objects, how to use those aliases and
-what they return. The full display is more detailed, but it doesn't show inherited fields and is much less useful.</p>
+<p>As of Version 1.2.0-pl, there is also an option to display the MODX 3 schema on a MODX 2 site using the following property:</p>
 
-<p>Although the quick reference contains most of the information you might want and is generally more useful, it does leave some things out,
-such as the types of the aliases (aggregate or composite) and the default values of the fields. If you would like a full dump of the schema
-as an array, use this tag instead:</p>
+<pre><fixedpre>
+    [[ObjectExplorer?
+        &show_modx3=`1`
+    ]]
+</fixedpre></pre>
+
+<p>Do *not* use the property above on a MODX 3 site, because it will show you the MODX 3 schema packaged with ObjectExplorer (which may be out of date) instead of the real one.</p>
+
+
+<h3>Display</h3>
+
+<p>By default, ObjectExplorer will display a quick reference to the MODX objects in alphabetical order. This is the recommended display because it contains the fields of the objects (including inherited fields), the aliases of related objects, how to use those aliases and what they return. The full display is more detailed, but it doesn't show inherited fields and is much less useful.</p>
+
+<p>Although the quick reference contains most of the information you might want and is generally more useful, it does leave some things out, such as the types of the aliases (aggregate or composite) and the default values of the fields. If you would like a full dump of the schema as an array, use this tag instead:</p>
 
 <pre><fixedpre>
     [[ObjectExplorer? &full=`1`]]
 </fixedpre></pre>
 
 <h3>ObjectExplorer Properties</h3>
-<p>There are only two useful properties for ObjectExplorer at this point:</p>
 
 <table class="properties">
     <tbody>
@@ -50,7 +57,7 @@ as an array, use this tag instead:</p>
     <tr>
         <td>full</td>
         <td>(optional) display full version of schema</td>
-        <td>No</td>
+        <td>0</td>
     </tr>
 
     <tr>
@@ -59,18 +66,19 @@ as an array, use this tag instead:</p>
         <td>2</td>
     </tr>
 
+    <tr>
+        <td>show_modx3</td>
+        <td>(optional) Parses a local copy of the MODX 3 schema on MODX 2 sites. <b>Do not use for MODX 3 sites!</b></td>
+        <td>0</td>
+    </tr>
+
 
     </tbody>
-</table>
-<p>&nbsp;</p>
-<p>If you change the number of columns, you'll probably need to change the width of #objectexplorer_jumplist_div in the objectexplorer.css
-file.</p>
+</table><p>&nbsp;</p><p>If you change the number of columns, you'll probably need to change the width of #objectexplorer_jumplist_div in the objectexplorer.css file.</p>
 
 <h3>Other Uses</h3>
-<p>The snippet code can be run outside of MODX if you would like to produce output on your local machine for reference or pasting. To do
-that successfully, you'll need to modify the path information near the top of the code. If you want the full display (as opposed to the
-quick display), you'll also need to set the $props['full'] variable to 1.
-</p>
+
+<p>The snippet code can be run outside of MODX if you would like to produce output on your local machine for reference or pasting. To do that successfully, you'll need to modify the path information near the top of the code. If you want the full display (as opposed to the quick display), you'll also need to set the $props['full'] variable to 1. </p>
 
 <p>The ObjectExplorer class can also be used to display information on a single MODX object. To do that:
 <ul>
