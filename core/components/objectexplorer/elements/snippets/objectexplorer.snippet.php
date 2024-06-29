@@ -93,7 +93,7 @@ $props['tab'] = '    ';
 $jumpList = array();
 
 /* anchor for top of page */
-$top = '<a name="top"></a>' . "\n";
+$top = '<a id="top"></a>' . "\n";
 
 /* MODX schema file location */
 $currentVersion = $modx->getVersionData()['version'];
