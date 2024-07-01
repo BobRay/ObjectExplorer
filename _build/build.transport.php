@@ -30,7 +30,7 @@
 /* Set package info be sure to set all of these */
 define('PKG_NAME','ObjectExplorer');
 define('PKG_NAME_LOWER','objectexplorer');
-define('PKG_VERSION','1.2.0');
+define('PKG_VERSION','1.3.0');
 define('PKG_RELEASE','pl');
 define('PKG_CATEGORY','ObjectExplorer');
 
@@ -115,7 +115,7 @@ if ($hasSnippets) {
 
 if ($hasChunks) { /* add chunks  */
     $modx->log(modX::LOG_LEVEL_INFO,'Adding in chunks.');
-    /* note: Chunks' default properties are set in transport.chunks.php */    
+    /* note: Chunks' default properties are set in transport.chunks.php */
     $chunks = include $sources['data'].'transport.chunks.php';
     if (is_array($chunks)) {
         $category->addMany($chunks, 'Chunks');
@@ -171,7 +171,7 @@ if ($hasCore) {
         ));
 }
 
-/* This section transfers every file in the local 
+/* This section transfers every file in the local
  mycomponents/mycomponent/core directory to the
  target site's core/mycomponent directory on install.
  If the core has been renamed or moved, they will still
@@ -186,13 +186,13 @@ if ($hasCore) {
     }
 
 /* Put the category vehicle (with all the stuff we added to the
- * category) into the package 
+ * category) into the package
  */
 $builder->putVehicle($vehicle);
 
 
 /* Next-to-last step - pack in the license file, readme.txt, changelog,
- * and setup options 
+ * and setup options
  */
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),

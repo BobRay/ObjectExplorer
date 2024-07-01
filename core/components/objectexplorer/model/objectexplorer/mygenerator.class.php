@@ -4,7 +4,7 @@
  *
  * This file is adapted from a part of xPDO.
  * xPDO was created by Jason Coward
- * 
+ *
  * xPDO is free software; you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
@@ -82,11 +82,11 @@
      * Constructor
      *
      * @access protected
-     * @param xPDOManager &$manager A reference to a valid xPDOManager instance.
-     * @return MyGenerator object
+     * @param xPDOManager $manager A reference to a valid xPDOManager instance.
+     * @return void
      */
-    public function __construct(& $manager) {
-        $this->manager= & $manager;
+    public function __construct($manager) {
+        $this->manager= $manager;
     }
 
     /**
@@ -183,11 +183,11 @@
      * Handles formatting of the open XML element.
      *
      * @access protected
-     * @param xmlParser &$parser
-     * @param string &$element
-     * @param array &$attributes
+     * @param xmlParser $parser
+     * @param string $element
+     * @param array $attributes
      */
-    protected function _handleOpenElement(& $parser, & $element, & $attributes) {
+    protected function _handleOpenElement($parser, $element, $attributes) {
         $element= strtolower($element);
         switch ($element) {
             case 'model' :
@@ -383,18 +383,18 @@
      * Handles the closing of XML tags.
      *
      * @access protected
-     * @param xmlParser &$parser
-     * @param string &$element
+     * @param xmlParser $parser
+     * @param string $element
      */
-    protected function _handleCloseElement(& $parser, & $element) {}
+    protected function _handleCloseElement($parser, $element) {}
 
     /**
      * Handles the XML CDATA tags
      *
      * @access protected
-     * @param xmlParser &$parser
-     * @param string &$data
+     * @param xmlParser $parser
+     * @param string $data
      */
-    protected function _handleCData(& $parser, & $data) {}
+    protected function _handleCData($parser, $data) {}
 
 }
