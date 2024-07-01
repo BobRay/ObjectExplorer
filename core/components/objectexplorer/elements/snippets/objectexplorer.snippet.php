@@ -97,32 +97,53 @@ $top = '<a id="top"></a>' . "\n";
 
 /* MODX schema file location */
 $currentVersion = $modx->getVersionData()['version'];
-$show_modx3 = (bool) $modx->getOption('show_modx3', $props, false, true);
+$show_modx3 = (bool) $modx->getOption('show_modx3', $props, $currentVersion >= 3, true);
 if ( ($currentVersion < 3) && $show_modx3) {
-    $schemaFile = MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.mysql.schema.xml';
+    /* Show MODX 3 classes in MODX 2 */
+    $schemaFiles = array(
+        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.mysql.schema.xml',
+        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.transport.schema.xml',
+        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.sources.schema.xml',
+
+    );
+} elseif ($currentVersion >= 3 && $show_modx3 == false) {
+    /* Show MODX 2 classes in MODX 3 */
+    $schemaFiles = array(
+        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx2.mysql.schema.xml',
+        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx2.transport.schema.xml',
+        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx2.sources.schema.xml');
 } else {
-    $schemaFile = MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml';
+    /* Show current version's classes in either 2 or 3 */
+    $schemaFiles = array(
+        MODX_CORE_PATH . 'model/schema/modx.mysql.schema.xml',
+        MODX_CORE_PATH . 'model/schema/modx.sources.mysql.schema.xml',
+        MODX_CORE_PATH . 'model/schema/modx.transport.mysql.schema.xml',
+    );
 }
 
 /* Are we creating a quick reference or a full reference */
-/* set it here if outside of MODX. Quick Reference is the default */
+/* set it here if outside of MODX, Quick Reference is the default */
 
 //$props['full'] = 1;
 $quick = !$modx->getOption('full', $props, null);
 
 /* have the generator parse the schema and store it in $model */
-$model = $generator->parseSchema($schemaFile, '');
+$finalModel = array();
+foreach($schemaFiles as $schemaFile) {
+    $model = $generator->parseSchema($schemaFile, '');
 
-if (!$model) {
-    /* The parser failed */
-    $modx->log(modX::LOG_LEVEL_ERROR, $modx->lexicon('oe_error_parsing_schema_file'));
-    exit();
+    if (!$model) {
+        /* The parser failed */
+        $modx->log(modX::LOG_LEVEL_ERROR, $modx->lexicon('oe_error_parsing_schema_file'));
+        exit();
 
+    }
+    $finalModel = array_merge($finalModel, $model);
 }
-/* schema is not quite in alphabetical order */
-ksort($model);
+/* schema is quite in alphabetical order */
+ksort($finalModel);
 
-$explorer = new ObjectExplorer($modx, $model, $props);
+$explorer = new ObjectExplorer($modx, $finalModel, $props);
 if ($explorer) {
     //$modx->log(modX::LOG_LEVEL_INFO, 'Got mygenerator');
 } else {
@@ -140,14 +161,14 @@ $output .= "\n</div>\n\n";
 
 if ($quick) {
     $output .= "\n" . '<div class="quick-reference">' . "\n";
-    foreach ($model as $key => $value) {
+    foreach ($finalModel as $key => $value) {
         $output .= $explorer->getQuickSingle($key);
         $output .= $props['topJump'];
     }
     $output .= "</div>\n";
 } else {
     $output .= "\n" . '<div class="full-reference">' . "\n";
-    foreach ($model as $key => $value) {
+    foreach ($finalModel as $key => $value) {
         $output .= $explorer->getFullSingle($key);
         $output .= $props['topJump'];
     }
