@@ -159,7 +159,7 @@ $vehicle = $builder->createVehicle($category,$attr);
 
 /* This section transfers every file in the local
  mycomponents/mycomponent/assets directory to the
- target site's assets/mycomponent directory on install.
+ target site's assets/mycomponent directory on installation.
  If the assets dir. has been renamed or moved, they will still
  go to the right place.
  */
@@ -173,7 +173,7 @@ if ($hasCore) {
 
 /* This section transfers every file in the local
  mycomponents/mycomponent/core directory to the
- target site's core/mycomponent directory on install.
+ target site's core/mycomponent directory on installation.
  If the core has been renamed or moved, they will still
  go to the right place.
  */
