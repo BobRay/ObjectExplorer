@@ -102,8 +102,8 @@ if ( ($currentVersion < 3) && $show_modx3) {
     /* Show MODX 3 classes in MODX 2 */
     $schemaFiles = array(
         MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.mysql.schema.xml',
-        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.transport.schema.xml',
-        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.sources.schema.xml',
+        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.transport.mysql.schema.xml',
+        MODX_CORE_PATH . 'components/objectexplorer/model/objectexplorer/modx3.sources.mysql.schema.xml',
 
     );
 } elseif ($currentVersion >= 3 && $show_modx3 == false) {
