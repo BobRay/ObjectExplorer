@@ -1,7 +1,7 @@
 <?php
 /**
  * ObjectExplorer
- * Copyright 2011-2022 Bob Ray
+ * Copyright 2011-2024 Bob Ray
  *
  * ObjectExplorer is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -18,7 +18,7 @@
  *
  * @package ObjectExplorer
  * @author Bob Ray <https://bobsguides.com>
- 
+
  *
  * Description: The ObjectExplorer snippet presents a form in the front end for
  * creating resources. Rich text editing is available for text fields and TVs.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2010-2011 by MODX, LLC.
+ * Copyright 2010-2024 by MODX, LLC.
  *
  * This file is adapted from a part of xPDO.
  * xPDO was created by Jason Coward

@@ -63,7 +63,7 @@ require_once $modx->getOption('oe.core_path', null, $modx->getOption('core_path'
 require_once $modx->getOption('oe.core_path', null, $modx->getOption('core_path') . 'components/objectexplorer/') . 'model/objectexplorer/objectexplorer.class.php';
 
 
-$modx->regClientCSS($modx->getOption('oe.assets_url', null, $modx->getOption('assets_url') . 'components/objectexplorer/') . 'css/objectexplorer.css');
+$modx->regClientCSS($modx->getOption('oe.assets_url', null, $modx->getOption('assets_url') . 'components/objectexplorer/') . 'css/objectexplorer.css?Version=1.3.0');
 
 /* make sure we can get the xPDO manager and MyGenerator */
 $manager = $modx->getManager();
