@@ -7,10 +7,8 @@ ObjectExplorer Snippet for MODX Revolution
 
 **Bugs and requests:** [ObjectExplorer Issues](https://github.com/BobRay/ObjectExplorer/issues)
 
-**Questions about using ObjectExplorer** [MODX Forums](https://forums.modx.com)
+**Questions about using ObjectExplorer** [MODX Forums](https://community.modx.com)
 
+**Fully updated for MODX3 and PHP 8**
 
 This snippet is for use with MODX Revolution. ObjectExplorer presents a reference version of the objects in the MODX database with links at the top to jump to a description of any object (e.g., modResource, modUser, modSnippet, etc.). Object fields and their types are listed with each object.
-
-
-

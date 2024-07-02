@@ -1,4 +1,6 @@
-<p>ObjectExplorer displays information about the various objects in the MODX Revolution database. It's output is derived from the MODX schema file so it will display the current information for the version of MODX you are using.</p>
+<p>ObjectExplorer displays information about the various objects in the MODX Revolution database. Its output is derived from the MODX schema file, so it will display the current information for the version of MODX you are using.</p>
+
+<h4>Fully updated for MODX 3 and PHP 8</h4>
 
 <h3>Installing ObjectExplorer for MODx Revolution</h3>
 
@@ -38,6 +40,8 @@
 
 <p>By default, ObjectExplorer will display a quick reference to the MODX objects in alphabetical order. This is the recommended display because it contains the fields of the objects (including inherited fields), the aliases of related objects, how to use those aliases and what they return. The full display is more detailed, but it doesn't show inherited fields and is much less useful.</p>
 
+<p>You may have to alter the CSS file to work with your template.</p>
+
 <p>Although the quick reference contains most of the information you might want and is generally more useful, it does leave some things out, such as the types of the aliases (aggregate or composite) and the default values of the fields. If you would like a full dump of the schema as an array, use this tag instead:</p>
 
 <pre><fixedpre>
@@ -71,10 +75,10 @@
         <td>(optional) Parses a local copy of the MODX 3 schema on MODX 2 sites. <b>Do not use for MODX 3 sites!</b></td>
         <td>0</td>
     </tr>
-
-
     </tbody>
-</table><p>&nbsp;</p><p>If you change the number of columns, you'll probably need to change the width of #objectexplorer_jumplist_div in the objectexplorer.css file.</p>
+</table>
+
+<p>If you change the number of columns, you'll probably need to change the width of #objectexplorer_jumplist_div in the objectexplorer.css file.</p>
 
 <h3>Other Uses</h3>
 
@@ -85,7 +89,7 @@
     <li>copy the code at the top of the snippet that creates the classes</li>
     <li>call $explorer-&gt;parseSchema($model)</li>
 
-    <li>set $objectName to the name of any MODX object (e.g. modResource, modChunk)</li>
+    <li>set $objectName to the name of any MODX object (e.g., modResource, modChunk)</li>
     <li>call either $explorer-&gt;getQuickSingle('objectName')</li>
     <li>or $explorer-&gt;getFullSingle('objectName')</li>
     <li>return the result of that call</li>

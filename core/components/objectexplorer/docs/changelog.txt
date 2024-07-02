@@ -1,5 +1,17 @@
 Changelog for ObjectExplorer
 
+ObjectExplorer 1.3.0-pl
+ - Add Media Source and Transport classes
+ - Updates for MODX 3
+ - Updated for PHP 8
+ - Fix slashes in MODX 3 schema file
+ - Fix jumplist width in CSS file
+ - Fix orthography of regClientCSS
+ - Update MODX 3 schema file
+ - Add all local schema files
+ - Fix attribute for jump to top
+ - Cache-bust CSS loading
+
 ObjectExplorer 1.2.0-pl
  - Compatible with MODX 3
  - Fix bug with wordwrap code
